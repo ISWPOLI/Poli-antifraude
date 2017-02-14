@@ -7,21 +7,33 @@ import java.io.*;
     public class Solution {
 
         public static void main(String[] args) {
-
+            ArrayList<Integer> numeros = new ArrayList<Integer>();
             Scanner sc=new Scanner(System.in);
-            String numerosString =sc.nextString();
-            while(numerosString.contains(" ")||numerosString.contains("-"))
-            
-            String ans="";
-            if(n%2==1){
-              ans = "Weird";
-            }
-            else{
-            
-               //Complete the code
+            String numerosString =sc.next();
+            while(numerosString.contains(" ")||numerosString.contains("-")||numerosString.contains(",")){
+                if(numerosString.contains(" ")){
+                    String []aux = numerosString.split(" ");
+                    if(aux.lenght()>=3){
+                    for(String a : aux)
+                        numeros.add(Integer.parseInt(a));
+                    }
+                }else if(numerosString.contains(" ")){
+                    String []aux = numerosString.split(" ");
+                    if(aux.lenght()>=3){
+                    for(String a : aux)
+                        numeros.add(Integer.parseInt(a));
+                    }
                 
-            }
-            System.out.println(ans);
+            } else if (numerosString.contains(" ")){
+                    String []aux = numerosString.split(" ");
+                    if(aux.lenght()>=3){
+                    for(String a : aux)
+                        numeros.add(Integer.parseInt(a));
+                    }
+                }
+           
             
         }
+            System.out.print(" "+numeros.get(0));
+    }
     }
