@@ -22,7 +22,7 @@ export class Auth {
           localStorage.setItem('profile', JSON.stringify(profile));
       });
     });
-  }
+  }  
 
   public login() {
     // Call the show method to display the widget.
