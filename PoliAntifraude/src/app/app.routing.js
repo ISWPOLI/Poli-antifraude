@@ -2,6 +2,7 @@
 var router_1 = require('@angular/router');
 var home_component_1 = require('./components/home/home.component');
 var profile_component_1 = require('./components/profile/profile.component');
+var auth_guard_1 = require('./auth.guard');
 var appRoutes = [
     {
         path: '',
@@ -9,7 +10,8 @@ var appRoutes = [
     },
     {
         path: 'profile',
-        component: profile_component_1.ProfileComponent
+        component: profile_component_1.ProfileComponent,
+        canActivate: [auth_guard_1.AuthGuard]
     }
 ];
 exports.appRoutingProviders = [];

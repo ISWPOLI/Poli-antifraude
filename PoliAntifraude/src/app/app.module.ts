@@ -8,7 +8,7 @@ import { HomeComponent} from './components/home/home.component';
 import { ProfileComponent}  from './components/profile/profile.component'
 
 import{Auth} from './services/auth.service';
- 
+import {AuthGuard} from './auth.guard';
 
 @NgModule({
   imports:      [ BrowserModule, routing ],
@@ -17,7 +17,8 @@ import{Auth} from './services/auth.service';
   providers: [
   appRoutingProviders,
   AUTH_PROVIDERS,
-  Auth
+  Auth,
+  AuthGuard
   ]
 
 })

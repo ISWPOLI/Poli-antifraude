@@ -9,22 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var auth_service_1 = require('../../services/auth.service');
-var ProfileComponent = (function () {
-    function ProfileComponent(auth) {
+var router_1 = require('@angular/router');
+var auth_service_1 = require('./services/auth.service');
+var AuthGuard = (function () {
+    function AuthGuard(auth, router) {
         this.auth = auth;
-        this.profile = JSON.parse(localStorage.getItem('profile'));
-        console.log(this.profile);
+        this.router = router;
     }
-    ProfileComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'profile',
-            templateUrl: 'profile.component.html',
-        }), 
-        __metadata('design:paramtypes', [auth_service_1.Auth])
-    ], ProfileComponent);
-    return ProfileComponent;
+    AuthGuard.prototype.canActivate = function (next, state) {
+        if (this.auth.authenticated()) {
+            console.log('AUTH GUARD PASSED');
+            return true;
+        }
+        else {
+            console.log('BLOCKED BY AUTH GUARD');
+            this.router.navigate(['/']);
+            return false;
+        }
+    };
+    AuthGuard = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [auth_service_1.Auth, router_1.Router])
+    ], AuthGuard);
+    return AuthGuard;
 }());
-exports.ProfileComponent = ProfileComponent;
-//# sourceMappingURL=profile.component.js.map
+exports.AuthGuard = AuthGuard;
+//# sourceMappingURL=auth.guard.js.map

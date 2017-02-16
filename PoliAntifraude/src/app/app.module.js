@@ -16,6 +16,7 @@ var angular2_jwt_1 = require('angular2-jwt');
 var home_component_1 = require('./components/home/home.component');
 var profile_component_1 = require('./components/profile/profile.component');
 var auth_service_1 = require('./services/auth.service');
+var auth_guard_1 = require('./auth.guard');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -27,7 +28,8 @@ var AppModule = (function () {
             providers: [
                 app_routing_1.appRoutingProviders,
                 angular2_jwt_1.AUTH_PROVIDERS,
-                auth_service_1.Auth
+                auth_service_1.Auth,
+                auth_guard_1.AuthGuard
             ]
         }), 
         __metadata('design:paramtypes', [])
