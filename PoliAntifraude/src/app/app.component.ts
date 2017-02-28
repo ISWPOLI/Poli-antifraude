@@ -10,4 +10,7 @@ export class AppComponent  {
 	constructor(private auth:Auth){
 
 	}
+	ngOnInit() {
+    }
+
  }

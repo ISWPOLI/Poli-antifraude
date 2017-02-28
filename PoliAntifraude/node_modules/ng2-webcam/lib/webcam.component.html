@@ -1,0 +1,14 @@
+<div id="ng2-webcam">
+
+  <video id="video" *ngIf="isSupportWebRTC" [src]="videoSrc">Video stream not available</video>
+
+  <object *ngIf="isFallback" id="XwebcamXobjectX" width="320" height="240" data="node_modules/ng2-webcam/lib/fallback/jscam_canvas_only.swf">
+    Video stream not available
+    <param name="FlashVars" value="mode=callback&amp;quality=200">
+    <param name="allowScriptAccess" value="always">
+    <param name="movie" value="node_modules/ng2-webcam/lib/fallback/jscam_canvas_only.swf">
+  </object>
+
+</div>
+
+

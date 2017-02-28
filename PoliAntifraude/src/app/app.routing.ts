@@ -3,6 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {HomeComponent} from './components/home/home.component'; 
 import {ProfileComponent} from './components/profile/profile.component';
+import {WebCamComponent} from './components/webcam/webcam.component';
 
 import {AuthGuard} from './auth.guard';
 
@@ -16,6 +17,10 @@ const appRoutes : Routes=[
  component:ProfileComponent,
  canActivate: [AuthGuard]	
 
+},
+{
+path:'webcam',
+ component:ProfileComponent	
 }
 ];
 

@@ -12,6 +12,10 @@ var appRoutes = [
         path: 'profile',
         component: profile_component_1.ProfileComponent,
         canActivate: [auth_guard_1.AuthGuard]
+    },
+    {
+        path: 'webcam',
+        component: profile_component_1.ProfileComponent
     }
 ];
 exports.appRoutingProviders = [];
