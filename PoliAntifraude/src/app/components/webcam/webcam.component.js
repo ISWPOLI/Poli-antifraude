@@ -53,8 +53,8 @@ var WebCamComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'webcam-component',
-            templateUrl: 'webcam.html',
-            styleUrls: ['webcam.css']
+            templateUrl: 'webcam.component.html',
+            styleUrls: ['webcam.component.css']
         }), 
         __metadata('design:paramtypes', [platform_browser_1.DomSanitizer, core_1.ElementRef])
     ], WebCamComponent);

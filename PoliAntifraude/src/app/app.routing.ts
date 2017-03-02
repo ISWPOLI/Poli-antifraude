@@ -20,7 +20,7 @@ const appRoutes : Routes=[
 },
 {
 path:'webcam',
- component:ProfileComponent	
+ component:WebCamComponent	
 }
 ];
 

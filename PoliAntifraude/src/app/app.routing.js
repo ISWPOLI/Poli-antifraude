@@ -2,6 +2,7 @@
 var router_1 = require('@angular/router');
 var home_component_1 = require('./components/home/home.component');
 var profile_component_1 = require('./components/profile/profile.component');
+var webcam_component_1 = require('./components/webcam/webcam.component');
 var auth_guard_1 = require('./auth.guard');
 var appRoutes = [
     {
@@ -15,7 +16,7 @@ var appRoutes = [
     },
     {
         path: 'webcam',
-        component: profile_component_1.ProfileComponent
+        component: webcam_component_1.WebCamComponent
     }
 ];
 exports.appRoutingProviders = [];

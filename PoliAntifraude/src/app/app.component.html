@@ -18,7 +18,6 @@
            <li><a href="#" (click)="!auth.login()" *ngIf="!auth.authenticated()">Login</a></li>
             <li><a routerLink ="/profile" *ngIf="auth.authenticated()">Profile</a></li>
             <li><a href="#" (click)="auth.logout()" *ngIf="auth.authenticated()">Logout</a></li>
-          
           </ul>
 
 

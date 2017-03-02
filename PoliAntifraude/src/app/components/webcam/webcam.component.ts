@@ -1,11 +1,12 @@
 import {Component, OnInit, ElementRef} from '@angular/core';
+import {Auth} from '../../services/auth.service';
 import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
     moduleId: module.id,
     selector: 'webcam-component',
-    templateUrl: 'webcam.html',
-    styleUrls: ['webcam.css']
+    templateUrl: 'webcam.component.html',
+    styleUrls: ['webcam.component.css']
 })
 
 
