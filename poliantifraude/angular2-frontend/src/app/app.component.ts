@@ -1,10 +1,16 @@
 import { Component } from '@angular/core';
+import{Auth} from './services/auth.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  moduleId: module.id,
+  selector: 'my-app',
+  templateUrl: 'app.component.html',
 })
-export class AppComponent {
-  title = 'it woadsfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffrks?!';
+export class AppComponent  {
+  constructor(private auth:Auth){
+
+  }
+  ngOnInit() {
+  }
+
 }
