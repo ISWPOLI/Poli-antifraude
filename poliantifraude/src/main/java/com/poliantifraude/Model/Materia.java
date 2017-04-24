@@ -9,7 +9,7 @@ import java.util.Hashtable;
 public class Materia {
     private String id_materia;
     private Profesor profesor;
-    private Hashtable <int, Examen> examenes;
+    private Hashtable <Integer, Examen> examenes;
     private Hashtable <String, Estudiante> estudiantes;
 
 
@@ -34,11 +34,11 @@ public class Materia {
         this.profesor = profesor;
     }
 
-    public Hashtable<int, Examen> getExamenes() {
+    public Hashtable<Integer, Examen> getExamenes() {
         return examenes;
     }
 
-    protected void setExamenes(Hashtable<int, Examen> examenes) {
+    protected void setExamenes(Hashtable<Integer, Examen> examenes) {
         this.examenes = examenes;
     }
 

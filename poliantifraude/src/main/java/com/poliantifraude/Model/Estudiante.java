@@ -9,9 +9,13 @@ import java.util.Hashtable;
 public class Estudiante extends Usuario{
     private String codigoEstudiante;
     private ArrayList<String> informacion;
-    private Hashtable<int, Pregunta> preguntas;
-    private Hashtable<int, Fotos> fotos;
+    private Hashtable<Integer, Pregunta> preguntas;
+    private Hashtable<Integer, Foto> fotos;
 
+    @Override
+    public void traerInformacion() {
+
+    }
 
     public void obtenerFoto_Identificacion(Hashtable fotos){
 
@@ -41,19 +45,19 @@ public class Estudiante extends Usuario{
         this.informacion = informacion;
     }
 
-    public Hashtable<int, Pregunta> getPreguntas() {
+    public Hashtable<Integer, Pregunta> getPreguntas() {
         return preguntas;
     }
 
-    public void setPreguntas(Hashtable<int, Pregunta> preguntas) {
+    public void setPreguntas(Hashtable<Integer, Pregunta> preguntas) {
         this.preguntas = preguntas;
     }
 
-    public Hashtable<int, Fotos> getFotos() {
+    public Hashtable<Integer, Foto> getFotos() {
         return fotos;
     }
 
-    public void setFotos(Hashtable<int, Fotos> fotos) {
+    public void setFotos(Hashtable<Integer, Foto> fotos) {
         this.fotos = fotos;
     }
 }

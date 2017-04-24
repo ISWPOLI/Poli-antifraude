@@ -1,5 +1,6 @@
 package com.poliantifraude.Model;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 /**
@@ -10,14 +11,14 @@ public class Fraude {
     private boolean estado;
     private Examen examen;
     private Hashtable<String, Pregunta> preguntasSeguridad;
-    private ArrayList<Fotos> fotosFraude;
+    private ArrayList<Foto> fotosFraude;
 
 
-    public void generarPreguntasSeguridad(Estudiante estudiante, Hashtable<int, Pregunta>){
+    public void generarPreguntasSeguridad(Estudiante estudiante, Hashtable<Integer, Pregunta> preguntas){
 
     }
 
-    public void generarFotos(Estudiante estudiante, Hashtable<int, Foto>){
+    public void generarFotos(Estudiante estudiante, Hashtable<Integer, Foto> fotos){
 
     }
 
@@ -60,11 +61,11 @@ public class Fraude {
         this.preguntasSeguridad = preguntasSeguridad;
     }
 
-    public ArrayList<Fotos> getFotosFraude() {
+    public ArrayList<Foto> getFotosFraude() {
         return fotosFraude;
     }
 
-    public void setFotosFraude(ArrayList<Fotos> fotosFraude) {
+    public void setFotosFraude(ArrayList<Foto> fotosFraude) {
         this.fotosFraude = fotosFraude;
     }
 }
