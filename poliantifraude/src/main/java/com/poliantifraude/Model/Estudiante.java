@@ -1,16 +1,37 @@
 package com.poliantifraude.Model;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
 /**
  * Created by alejo on 4/23/2017.
  */
-public class Estudiante extends Usuario{
+@Entity
+@Table(name = "estudiante")
+public class Estudiante extends Usuario implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id_estudiante;
+    @Column(name = "codigoEstudiante")
     private String codigoEstudiante;
+
+    @Column(name = "nombre")
+    private String nombreEstudiante;
+
     private ArrayList<String> informacion;
     private Hashtable<Integer, Pregunta> preguntas;
     private Hashtable<Integer, Foto> fotos;
+
+ protected  Estudiante (){
+     super();
+ }
+    public Estudiante(String codigoEstudiante, String nombreEstudiante) {
+        this.codigoEstudiante = codigoEstudiante;
+        this.nombreEstudiante = nombreEstudiante;
+    }
+
 
     @Override
     public void traerInformacion() {
@@ -59,5 +80,10 @@ public class Estudiante extends Usuario{
 
     public void setFotos(Hashtable<Integer, Foto> fotos) {
         this.fotos = fotos;
+    }
+
+    @Override
+    public String toString() {
+        return ("id internno" + id_estudiante + "codigo Estudiante" + codigoEstudiante  + "nombre" + nombreEstudiante);
     }
 }
