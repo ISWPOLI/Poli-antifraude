@@ -1,17 +1,42 @@
 package com.poliantifraude.Model;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
 /**
  * Created by alejo on 4/23/2017.
  */
-public class Estudiante extends Usuario{
+@Entity
+@Table(name = "estudiante")
+public class Estudiante extends Usuario implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id_estudiante;
+    @Column(name = "codigoEstudiante")
     private String codigoEstudiante;
-    private ArrayList<String> informacion;
-    private Hashtable<int, Pregunta> preguntas;
-    private Hashtable<int, Fotos> fotos;
 
+    @Column(name = "nombre")
+    private String nombreEstudiante;
+
+    private ArrayList<String> informacion;
+    private Hashtable<Integer, Pregunta> preguntas;
+    private Hashtable<Integer, Foto> fotos;
+
+ protected  Estudiante (){
+     super();
+ }
+    public Estudiante(String codigoEstudiante, String nombreEstudiante) {
+        this.codigoEstudiante = codigoEstudiante;
+        this.nombreEstudiante = nombreEstudiante;
+    }
+
+
+    @Override
+    public void traerInformacion() {
+
+    }
 
     public void obtenerFoto_Identificacion(Hashtable fotos){
 
@@ -41,19 +66,24 @@ public class Estudiante extends Usuario{
         this.informacion = informacion;
     }
 
-    public Hashtable<int, Pregunta> getPreguntas() {
+    public Hashtable<Integer, Pregunta> getPreguntas() {
         return preguntas;
     }
 
-    public void setPreguntas(Hashtable<int, Pregunta> preguntas) {
+    public void setPreguntas(Hashtable<Integer, Pregunta> preguntas) {
         this.preguntas = preguntas;
     }
 
-    public Hashtable<int, Fotos> getFotos() {
+    public Hashtable<Integer, Foto> getFotos() {
         return fotos;
     }
 
-    public void setFotos(Hashtable<int, Fotos> fotos) {
+    public void setFotos(Hashtable<Integer, Foto> fotos) {
         this.fotos = fotos;
+    }
+
+    @Override
+    public String toString() {
+        return ("id internno" + id_estudiante + "codigo Estudiante" + codigoEstudiante  + "nombre" + nombreEstudiante);
     }
 }
