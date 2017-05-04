@@ -1,16 +1,17 @@
 package com.poliantifraude.Model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by alejo on 4/23/2017.
  */
 @Entity
 @Table(name = "pregunta")
-public class Pregunta {
+public class Pregunta implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id_pregunta;
+    private long id_pregunta;
     @Column(name = "pregunta")
     private String pregunta;
     @Column(name = "respuesta")
@@ -26,11 +27,11 @@ public class Pregunta {
         this.respuesta = respuesta;
     }
 
-    public int getId_pregunta() {
+    public long getId_pregunta() {
         return id_pregunta;
     }
 
-    public void setId_pregunta(int id_pregunta) {
+    public void setId_pregunta(long id_pregunta) {
         this.id_pregunta = id_pregunta;
     }
 

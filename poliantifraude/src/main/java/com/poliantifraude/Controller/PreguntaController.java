@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PreguntaController {
     @Autowired
-    PreguntaRepository repository;
+    PreguntaRepository repository1;
 
     @RequestMapping("/crearPregunta")
     public String crearPregunta(){
-        repository.save(new Pregunta("modalidad","Cual es la modalidad "));
+        repository1.save(new Pregunta("modalidad","Cual es la modalidad "));
 
     return "se creo pregunta";
     }
