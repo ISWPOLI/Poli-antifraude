@@ -10,7 +10,6 @@ public abstract  class  Usuario {
 
   public  abstract void traerInformacion();
 
-
     public String getContraseña() {
         return contraseña;
     }
