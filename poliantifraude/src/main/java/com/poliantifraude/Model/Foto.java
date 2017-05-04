@@ -39,4 +39,11 @@ public class Foto {
     public void setPropiedades(Hashtable<String, String> propiedades) {
         this.propiedades = propiedades;
     }
+
+    //Se genera Constructor de la clase Foto
+    public Foto(String id_foto, BufferedImage imagen, Hashtable<String, String> propiedades) {
+        this.id_foto = id_foto;
+        this.imagen = imagen;
+        this.propiedades = propiedades;
+    }
 }

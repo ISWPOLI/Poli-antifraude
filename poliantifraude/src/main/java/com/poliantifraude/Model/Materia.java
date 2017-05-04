@@ -49,4 +49,12 @@ public class Materia {
     protected void setEstudiantes(Hashtable<String, Estudiante> estudiantes) {
         this.estudiantes = estudiantes;
     }
+
+    //Se genera Contructor de la clase Materia
+    public Materia(String id_materia, Profesor profesor, Hashtable<Integer, Examen> examenes, Hashtable<String, Estudiante> estudiantes) {
+        this.id_materia = id_materia;
+        this.profesor = profesor;
+        this.examenes = examenes;
+        this.estudiantes = estudiantes;
+    }
 }

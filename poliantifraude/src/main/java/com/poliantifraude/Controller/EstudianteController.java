@@ -18,19 +18,10 @@ public class EstudianteController {
 
     @RequestMapping("/guardarEstudiantes")
     public String generarInformacion (){
+
         repository.save(new Estudiante("1020011670","Alejandro Daza Truque"));
-        repository.save(new Estudiante("1020011670","Alejandro Daza Truque"));
-        repository.save(new Estudiante("1020011670","Alejandro Daza Truque"));
-        repository.save(new Estudiante("1020011670","Alejandro Daza Truque"));
-        repository.save(new Estudiante("1020011670","Alejandro Daza Truque"));
-        repository.save(new Estudiante("1020011670","Alejandro Daza Truque"));
-        repository.save(new Estudiante("1020011670","Alejandro Daza Truque"));
-        repository.save(new Estudiante("1020011670","Alejandro Daza Truque"));
-        repository.save(new Estudiante("1020011670","Alejandro Daza Truque"));
-        repository.save(new Estudiante("1020011670","Alejandro Daza Truque"));
-        repository.save(new Estudiante("1020011670","Alejandro Daza Truque"));
-        repository.save(new Estudiante("1020011670","Alejandro Daza Truque"));
-        repository.save(new Estudiante("1020011670","Alejandro Daza Truque"));
+        repository.save(new Estudiante("1110013086","Sebastian Canasto"));
+
 
         return "Se crearon los estudiantes";
 
@@ -46,6 +37,8 @@ public class EstudianteController {
 
         return result + "</html>";
     }
+
+
 
 
 }

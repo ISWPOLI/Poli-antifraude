@@ -45,4 +45,12 @@ public class Administrador extends Usuario {
     protected void setInformacion(ArrayList<String> informacion) {
         this.informacion = informacion;
     }
+
+    //Se crea constructor de la clase Administrador.
+
+
+    public Administrador(String codigoAdministrador, ArrayList<String> informacion) {
+        this.codigoAdministrador = codigoAdministrador;
+        this.informacion = informacion;
+    }
 }

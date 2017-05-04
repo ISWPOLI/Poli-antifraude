@@ -27,4 +27,16 @@ public class InfornacionController {
         return "Se crearon los estudiantes";
 
     }
+
+    @RequestMapping("/findInformacion")
+    public String findAll(){
+        String result = "<html>";
+
+        for(Informacion informacion: repository.findAll()){
+            result += "<div>" + informacion.toString() + "</div>";
+        }
+
+        return result + "</html>";
+    }
+
 }
