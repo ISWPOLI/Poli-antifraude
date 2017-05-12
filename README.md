@@ -1,4 +1,12 @@
 # Poli-antifraude
 Repositorio para el proyecto
 
-[[pdf|http://moodlep17a.mipoli.co/pluginfile.php/48983/mod_resource/content/1/3.%20Estimación%20de%20proyectos%20de%20SW_P2-2017-1_.pdf]]
+
+Cambios que se pueden contemplar en los siguientes links:
+
+  http://poliantifraude.ddns.net:9090
+ 
+  http://poliantifraude.ddns.net:9090/camera Funcion de la camera
+  http://poliantifraude.ddns.net:9090/login Funcion del ingreso y registro
+   
+
