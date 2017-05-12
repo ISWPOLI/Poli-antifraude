@@ -2,13 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"  />
-    <title>Registro</title>
+    <title>Pagina Login</title>
     <link type="text/css" href="/css/estilos.css" rel="stylesheet"/>
 
 </head>
 <body>
-<form action="registrar.php" method="post" onsubmit="return registrar();">
-    <h1>Registro</h1>
+
+<form th:action="@{/login.html}" method="post" onsubmit="return registrar();">
+    <h1>Login</h1>
     <div class="contenedor-inputs">
         <input type="text" id="usuario" name="usuario" placeholder="Ingrese su Usuario" />
         <input type="password" id="clave" name="clave" placeholder="Ingrese su Contraseña"/>
