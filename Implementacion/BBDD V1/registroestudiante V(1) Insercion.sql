@@ -31,7 +31,6 @@ CREATE TABLE IF NOT EXISTS `registroestudiante` (
   `Sede` varchar(20) DEFAULT NULL COMMENT 'ubicación',
   `Codigo` int(10) DEFAULT NULL COMMENT 'Idpoli',
   `Cedula` int(10) DEFAULT NULL COMMENT 'idpais',
-  `LibrMili` int(10) DEFAULT NULL COMMENT 'ippolicia',
   `IdEstaCivi` int(4) DEFAULT NULL COMMENT 'S,C,S,V',
   `Sexo` varchar(10) DEFAULT NULL COMMENT 'M,F',
   `FechNaci` date DEFAULT NULL COMMENT 'dd,mm,aaa',
@@ -39,15 +38,14 @@ CREATE TABLE IF NOT EXISTS `registroestudiante` (
   `Apellido1` varchar(10) DEFAULT NULL COMMENT 'completos',
   `Apellido2` varchar(10) CHARACTER SET utf32 DEFAULT NULL COMMENT 'completos',
   `Direccion` varchar(20) CHARACTER SET utf32 DEFAULT NULL COMMENT 'sin formato',
-  `Ciudad` varchar(10) DEFAULT NULL COMMENT 'medellín, bogota',
+  `Ciudad` varchar(10) DEFAULT NULL COMMENT 'ciudad',
   `Telefono` int(10) DEFAULT NULL COMMENT 'fijo personal',
+  `Celular` int(10) DEFAULT NULL COMMENT 'Celular personal',
   `UsuarioPoli` varchar(10) DEFAULT NULL COMMENT 'Ispoli',
   `IdPrograma` int(5) DEFAULT NULL COMMENT '97 programas',
-  `Programa` varchar(15) DEFAULT NULL COMMENT 'nombreprogrma',
-  `Facultad` varchar(15) DEFAULT NULL COMMENT 'nombreFaculta',
+  `Programa` int(2) DEFAULT NULL COMMENT 'nombreprogrma',
+  `Facultad` int(2) DEFAULT NULL COMMENT 'nombreFaculta',
   `Jornada` varchar(10) DEFAULT NULL COMMENT 'jornada N/D',
-  `AñoGrado` int(6) DEFAULT NULL COMMENT 'AñoActual',
-  `PeriodoActa` int(6) DEFAULT NULL COMMENT 'Periodo',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
@@ -55,5 +53,37 @@ CREATE TABLE IF NOT EXISTS `registroestudiante` (
 -- Volcar la base de datos para la tabla `registroestudiante`
 --
 
-INSERT INTO `registroestudiante` (`id`, `Modalidad`, `Sede`, `Codigo`, `Cedula`, `LibrMili`, `IdEstaCivi`, `Sexo`, `FechNaci`, `Nombres`, `Apellido1`, `Apellido2`, `Direccion`, `Ciudad`, `Telefono`, `UsuarioPoli`, `IdPrograma`, `Programa`, `Facultad`, `Jornada`, `AñoGrado`, `PeriodoActa`) VALUES
-(1, 'Presencial', 'Politecnico Bogota', 811047597, 1019040715, 1019040715, 0, 'M', '1985-12-26', 'Julio Erne', 'Rodriguez', 'Rincon', 'Cr 136A # 145 31', 'Bogota', 2147483647, 'jerodri', 41, 'Ingeniería de S', 'Ingenieria y Ci', 'Nocturna', 2017, 1);
+INSERT INTO `registroestudiante` (`id`, `Modalidad`, `Sede`, `Codigo`, `Cedula`, `IdEstaCivi`, `Sexo`, `FechNaci`, `Nombres`, `Apellido1`, `Apellido2`, `Direccion`, `Ciudad`, `Telefono`, `UsuarioPoli`, `IdPrograma`, `Programa`, `Facultad`, `Jornada`, `AñoGrado`, `PeriodoActa`) 
+VALUES (1, 'Presencial', 'Politecnico Bogota', 1110013086, 1070010650, 0, 'M', '1991-06-20', 'Sebastian', 'Canastero', 'Lesmes', 'Cr 136A # 145 31', 'Cajica', 4717100, 3103296631, 'secanastero',1, 1, 'Nocturna');
+VALUES (2, 'Presencial', 'Politecnico Bogota', 1010015417, 1019004237, 0, 'M', '1986-04-19', 'Andres', 'Buitrago', 'Diaz', 'Cll 152b # 72 - 91', 'Bogota', 4717706, 3102199997, 'aebuitrago',1, 1, 'Nocturna');
+VALUES (3, 'Presencial', 'Politecnico Bogota', 1020011670, 1015424062, 0, 'M', '1991-06-29', 'Alejandro', 'Daza', 'Trunque', 'cra 20 # 182 - 60', 'Bogota', 4717158, 3108011284, 'aldazatr',1, 1, 'Nocturna');
+
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `registroestudiante`
+--
+
+CREATE TABLE IF NOT EXISTS `registroPadre` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'llave campo',
+  `idEstudiante` int(11) NOT DEFAULT NULL COMMENT 'ID estudiante',
+  `padre` varchar(5) NOT DEFAULT NULL COMMENT 'Padre, madre',
+  `Cedula` int(10) DEFAULT NULL COMMENT 'idCedula',
+  `Sexo` varchar(10) DEFAULT NULL COMMENT 'M,F',
+  `FechNaci` date DEFAULT NULL COMMENT 'dd,mm,aaa',
+  `Nombres` varchar(10) DEFAULT NULL COMMENT 'completos',
+  `Apellido1` varchar(10) DEFAULT NULL COMMENT 'completos',
+  `Apellido2` varchar(10) CHARACTER SET utf32 DEFAULT NULL COMMENT 'completos',
+  `Direccion` varchar(20) CHARACTER SET utf32 DEFAULT NULL COMMENT 'sin formato',
+  `CiudadResidencia` varchar(10) DEFAULT NULL COMMENT 'Ciudad donde recide',
+  `Telefono` int(10) DEFAULT NULL COMMENT 'fijo personal',
+   PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Volcar la base de datos para la tabla `registroestudiante`
+--
+
+INSERT INTO `registroPadre` (`id`, `idEstudiante`, `padre`,`Cedula`, `Sexo`, `FechNaci`, `Nombres`, `Apellido1`, `Apellido2`, `Direccion`, `CiudadResidencia`, `Telefono`) VALUES
+(1, '3', 'Padre', 811047597, 1019040715, 'M', '1985-12-26', 'Pedro', 'Daza', 'Lesmes', 'Cr 136A # 145 31', 'Bogota', 12345678);
