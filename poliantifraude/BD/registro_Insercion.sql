@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `registroestudiante` (
   `Direccion` varchar(20) CHARACTER SET utf32 DEFAULT NULL COMMENT 'sin formato',
   `Ciudad` varchar(10) DEFAULT NULL COMMENT 'ciudad',
   `Telefono` int(10) DEFAULT NULL COMMENT 'fijo personal',
-  `Celular` int(10) DEFAULT NULL COMMENT 'Celular personal',
+  `Celular` int(10) DEFAULT NULL COMMENT 'Celular personal', 
   `UsuarioPoli` varchar(10) DEFAULT NULL COMMENT 'Ispoli',
   `IdPrograma` int(5) DEFAULT NULL COMMENT '97 programas',
   `Programa` int(2) DEFAULT NULL COMMENT 'nombreprogrma',

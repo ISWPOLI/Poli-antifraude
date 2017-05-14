@@ -1,4 +1,4 @@
-﻿-- phpMyAdmin SQL Dump
+﻿	-- phpMyAdmin SQL Dump
 -- version 3.3.9
 -- http://www.phpmyadmin.net
 --
@@ -27,7 +27,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 CREATE TABLE IF NOT EXISTS `preguntasidentificacion` (
   `idPreg` int(5) NOT NULL AUTO_INCREMENT COMMENT 'accceso',
-  `Pregunta` varchar(60) DEFAULT NULL COMMENT 'nombrePregunta',
+  `Pregunta` varchar(60) DEFAULT NULL COMMENT 'nombrePregunta'
   PRIMARY KEY (`idPreg`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 INSERT INTO `preguntasidentificacion` (idPreg, Pregunta)
