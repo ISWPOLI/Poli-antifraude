@@ -1,7 +1,7 @@
-<button onclick="alert('hizo click');">Click me!</button>
+<button; onclick="alert('hizo click');">Click; me!</button>
 <br><br>
-<input onclick = "enable();"type="checkbox" name="active_field" id="toggle">Toggle to switch
-<button id="status">Button</button>
+<input;; onclick = "enable();"type="checkbox";; name="active_field"; id="toggle">Toggle; to; switch
+<button; id="status">Button</button>
 <script>
       function enable() 
             {
@@ -14,4 +14,4 @@
                       document.getElementById('status').disabled = false;
                 }
             }
-</script>
+</script>;

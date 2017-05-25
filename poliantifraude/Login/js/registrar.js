@@ -15,7 +15,7 @@ function registrar() {
 	} else if (email.length > 50) {
         alert("El correo es muy extenso");
     } else if (!expresion.test(email)) {
-        alert("El correo no es valido")
+        alert("El correo no es valido");
         return false;
     }
 }
@@ -39,7 +39,7 @@ function enviar() {
         alert("El correo es muy extenso");
         
     } else if (!expresion.test(email)) {
-        alert("El correo no es valido")
+        alert("El correo no es valido");
         return false;
     }
 }

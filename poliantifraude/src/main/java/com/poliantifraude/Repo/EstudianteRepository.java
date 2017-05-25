@@ -1,14 +1,14 @@
 package com.poliantifraude.Repo;
 
-import com.poliantifraude.Model.Customer;
 import com.poliantifraude.Model.Estudiante;
-import org.springframework.data.repository.CrudRepository;
-
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
- * Created by alejo on 4/23/2017.
+ * Created by alejo on 5/14/2017.
  */
-public interface EstudianteRepository  extends CrudRepository<Estudiante, Long> {
-    List<Estudiante> findByCodigoEstudiante(String Idexamen);
-}
+
+@Repository("estudianteRepository")
+public interface EstudianteRepository extends JpaRepository<Estudiante, Long> {
+    Estudiante findByUsuarioPoli(String email);
+        }

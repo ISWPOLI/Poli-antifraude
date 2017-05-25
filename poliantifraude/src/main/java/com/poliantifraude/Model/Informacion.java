@@ -44,8 +44,6 @@ public class Informacion {
     private String usuarioPoli;
 
 
-    private Estudiante estudiante;
-
     public Informacion(String modalidad, String sede, String codigo, String cedula, String libretaMilitar, String estadoCivil, String sexo,
                        String fecha_nacimiento, String nombres, String apellido1, String apellido2, String direccion, String ciudad, String telefono,
                       String usuarioPoli ){

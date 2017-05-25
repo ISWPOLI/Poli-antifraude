@@ -2608,7 +2608,7 @@ fft = function () {
     } else {
       timeToInt(this, this.timeDomain);
       this.analyser.getByteTimeDomainData(this.timeDomain);
-      var normalArray = new Array();
+      var normalArray = [];
       for (var i = 0; i < this.timeDomain.length; i++) {
         var scaled = p5.prototype.map(this.timeDomain[i], 0, 255, -1, 1);
         normalArray.push(scaled);
@@ -8000,7 +8000,7 @@ metro = function () {
     var elapsedTime = tickTime - prevTick;
     var secondsFromNow = tickTime - p5sound.audiocontext.currentTime;
     if (elapsedTime - tatumTime <= -0.02) {
-      return;
+
     } else {
       prevTick = tickTime;
       // for all of the active things on the metro:
@@ -8717,7 +8717,7 @@ soundRecorder = function () {
    */
   p5.SoundRecorder.prototype._audioprocess = function (event) {
     if (this.recording === false) {
-      return;
+
     } else if (this.recording === true) {
       // if we are past the duration, then stop... else:
       if (this.sampleLimit && this.recordedSamples >= this.sampleLimit) {

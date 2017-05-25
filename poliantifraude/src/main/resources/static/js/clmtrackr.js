@@ -76,7 +76,7 @@ var clm = {
 
 		var learningRate = [];
 		var stepParameter = 1.25;
-		var prevCostFunc = []
+		var prevCostFunc = [];
 
 		var searchWindow;
 		var modelWidth, modelHeight;
@@ -286,7 +286,7 @@ var clm = {
 				}
 				pointWeights = numeric.diag(pointWeights);
 			}
-		}
+		};
 
 		/*
 		 *	starts the tracker to run on a regular interval
@@ -306,7 +306,7 @@ var clm = {
 			jf = new jsfeat_face(element, params.faceDetection.workSize, params.useWebWorkers);
 			// start named timeout function
 			runnerTimeout = requestAnimFrame(runnerFunction);
-		}
+		};
 
 		/*
 		 *	stop the running tracker
@@ -314,12 +314,12 @@ var clm = {
 		this.stop = function() {
 			// stop the running tracker if any exists
 			cancelRequestAnimFrame(runnerTimeout);
-		}
+		};
 
 		var detectionCallback = function(element, box, result) {
 			faceDetectionResult = result;
 			this.track(element, box);
-		}
+		};
 
 		/*
 		 *  element : canvas or video element
@@ -328,7 +328,7 @@ var clm = {
 		this.track = function(element, box) {
 			var evt = document.createEvent("Event");
 			evt.initEvent("clmtrackrBeforeTrack", true, true);
-			document.dispatchEvent(evt)
+			document.dispatchEvent(evt);
 
 			var scaling, translateX, translateY, rotation;
 			var croppedPatches = [];
@@ -359,7 +359,7 @@ var clm = {
 					evt.initEvent("clmtrackrNotFound", true, true);
 					document.dispatchEvent(evt);
 
-					faceDetectionResult = undefined
+					faceDetectionResult = undefined;
 					return false;
 				}
 
@@ -642,7 +642,7 @@ var clm = {
 			// send an event on each iteration
 			var evt = document.createEvent("Event");
 			evt.initEvent("clmtrackrIteration", true, true);
-			document.dispatchEvent(evt)
+			document.dispatchEvent(evt);
 
 			if (this.getConvergence() < 0.5) {
 				// we must get a score before we can say we've converged
@@ -659,7 +659,7 @@ var clm = {
 
 			// return new points
 			return currentPositions;
-		}
+		};
 
 		/*
 		 *	reset tracking, so that track() will start a new detection
@@ -673,7 +673,7 @@ var clm = {
 			}
 			runnerElement = undefined;
 			runnerBox = undefined;
-		}
+		};
 
 		/*
 		 *	draw model on given canvas
@@ -707,7 +707,7 @@ var clm = {
 					drawPath(cc, paths[i], params);
 				}
 			}
-		}
+		};
 
 		/*
 		 * 	get the score of the current model fit
@@ -715,14 +715,14 @@ var clm = {
 		 */
 		this.getScore = function() {
 			return meanscore;
-		}
+		};
 
 		/*
 		 *	calculate positions based on parameters
 		 */
 		this.calculatePositions = function(parameters) {
 			return calculatePositions(parameters, true);
-		}
+		};
 
 		/*
 		 *	get coordinates of current model fit
@@ -733,14 +733,14 @@ var clm = {
 			} else {
 				return currentPositions;
 			}
-		}
+		};
 
 		/*
 		 *	get parameters of current model fit
 		 */
 		this.getCurrentParameters = function() {
 			return currentParameters;
-		}
+		};
 
 		/*
 		 *	Get the average of recent model movements
@@ -778,9 +778,9 @@ var clm = {
 			var diffX = currX-prevX;
 			var diffY = currY-prevY;
 			var msavg = ((diffX*diffX) + (diffY*diffY));
-			msavg /= previousPositions.length
+			msavg /= previousPositions.length;
 			return msavg;
-		}
+		};
 
 		/*
 		 * Set response mode (only useful if webGL is available)
@@ -823,7 +823,7 @@ var clm = {
 			responseIndex = 0;
 			responseMode = mode;
 			responseList = list;
-		}
+		};
 
 		var runnerFunction = function() {
 			runnerTimeout = requestAnimFrame(runnerFunction);
@@ -843,7 +843,7 @@ var clm = {
 			} else if (type == 'sobel') {
 				return webglFi.getSobelResponses(patches);
 			}
-		}
+		};
 
 		var getWebGLResponses = function(patches) {
 			if (responseMode == 'single') {
@@ -872,7 +872,7 @@ var clm = {
 				}
 				return blendedResponses;
 			}
-		}
+		};
 
 		// generates the jacobian matrix used for optimization calculations
 		var createJacobian = function(parameters, eigenVectors) {
@@ -914,7 +914,7 @@ var clm = {
 			}
 
 			return jacobian;
-		}
+		};
 
 		// calculate positions from parameters
 		var calculatePositions = function(parameters, useTransforms) {
@@ -938,7 +938,7 @@ var clm = {
 			}
 
 			return positions;
-		}
+		};
 
 		// detect position of face on canvas/video element
 		var detectPosition = function(el, callback) {
@@ -952,7 +952,7 @@ var clm = {
 						callback(false);
 						return false;
 					}
-				}
+				};
 				var comp = jf.findFace(params, callback);
 			} else {
 				candidate = jf.findFace(params);
@@ -962,7 +962,7 @@ var clm = {
 					return false;
 				}
 			}
-		}
+		};
 
 		// part one of meanshift calculation
 		var gpopt = function(responseWidth, currentPositionsj, updatePosition, vecProbs, responses, opj0, opj1, j, variance, scaling) {
@@ -984,7 +984,7 @@ var clm = {
 			}
 
 			return vpsum;
-		}
+		};
 
 		// part two of meanshift calculation
 		var gpopt2 = function(responseWidth, vecpos, updatePosition, vecProbs, vpsum, opj0, opj1, scaling) {
@@ -1011,7 +1011,7 @@ var clm = {
 			}
 			// for debugging
 			//return vecmatrix;
-		}
+		};
 
 		// calculate score of current fit
 		var checkTracking = function() {
@@ -1039,7 +1039,7 @@ var clm = {
 				for (var i = 0;i < 20*22;i++) {
 					sd += (scoringData[i]-mean)*(scoringData[i]-mean);
 				}
-				sd /= (20*22 - 1)
+				sd /= (20*22 - 1);
 				sd = Math.sqrt(sd);
 
 				var score = 0;
@@ -1065,7 +1065,7 @@ var clm = {
 				}
 			}
 			return true;
-		}
+		};
 
 		// get initial starting point for model
 		var getInitialPosition = function(element, box, callback, positionResult) {
@@ -1217,7 +1217,7 @@ var clm = {
 			} else {
 				return [scaling, rotation, translateX, translateY];
 			}
-		}
+		};
 
 		// draw a parametrized line on a canvas
 		var drawPath = function(canvasContext, path, dp) {
@@ -1245,7 +1245,7 @@ var clm = {
 			canvasContext.moveTo(0,0);
 			canvasContext.closePath();
 			canvasContext.stroke();
-		}
+		};
 
 		// draw a point on a canvas
 		function drawPoint(canvasContext, point, dp) {
@@ -1370,7 +1370,7 @@ var clm = {
 				pscidata[(j*4)+3] = 255;
 			}
 			canvasContext.putImageData(psci, drawX, drawY);
-		}
+		};
 
 		var requestAnimFrame = (function() {
 			return window.requestAnimationFrame ||
@@ -1394,7 +1394,7 @@ var clm = {
 
 		return true;
 	}
-}
+};
 
 "use strict";
 
@@ -1722,7 +1722,7 @@ var webglFilter = function() {
     }
 
     //create webglcanvas
-    canvas = document.createElement('canvas')
+    canvas = document.createElement('canvas');
     canvas.setAttribute('width', (patchWidth-filterWidth+1)+"px");
     canvas.setAttribute('height', ((patchHeight-filterHeight+1)*numPatches)+"px");
     canvas.setAttribute('id', 'renderCanvas');
@@ -1740,15 +1740,15 @@ var webglFilter = function() {
 
     /** insert filters into textures **/
     if ('raw' in filters) {
-      insertFilter(filters['raw'], gl.TEXTURE0)
+      insertFilter(filters['raw'], gl.TEXTURE0);
       rawInit = true;
     }
     if ('sobel' in filters) {
-      insertFilter(filters['sobel'], gl.TEXTURE4)
+      insertFilter(filters['sobel'], gl.TEXTURE4);
       sobelInit = true;
     }
     if ('lbp' in filters) {
-      insertFilter(filters['lbp'], gl.TEXTURE5)
+      insertFilter(filters['lbp'], gl.TEXTURE5);
       lbpInit = true;
     }
 
@@ -2026,7 +2026,7 @@ var webglFilter = function() {
     drawRectBuffer = gl.createBuffer();
     drawImageBuffer = gl.createBuffer();
     drawLayerBuffer = gl.createBuffer();
-  }
+  };
 
   this.getRawResponses = function(patches) {
     // TODO: check patches correct length/dimension
@@ -2060,7 +2060,7 @@ var webglFilter = function() {
     gl.viewport(0, 0, patchWidth, patchHeight*numBlocks);
 
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
-    gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER)
+    gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER);
 
     // draw to framebuffer
     gl.drawArrays(gl.TRIANGLES, 0, patchCells*6);
@@ -2070,7 +2070,7 @@ var webglFilter = function() {
     var responses = drawOut('raw');
 
     return responses;
-  }
+  };
 
   this.getSobelResponses = function(patches) {
     // check that it is initialized
@@ -2101,7 +2101,7 @@ var webglFilter = function() {
     gl.viewport(0, 0, patchWidth, patchHeight*numBlocks);
 
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
-    gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER)
+    gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER);
 
     // draw to framebuffer
     gl.drawArrays(gl.TRIANGLES, 0, patchCells*6);
@@ -2129,7 +2129,7 @@ var webglFilter = function() {
     gl.viewport(0, 0, patchWidth, patchHeight*numBlocks);
 
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
-    gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER)
+    gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER);
 
     // draw to framebuffer
     gl.drawArrays(gl.TRIANGLES, 0, patchCells*6);
@@ -2139,7 +2139,7 @@ var webglFilter = function() {
     var responses = drawOut('sobel');
 
     return responses;
-  }
+  };
 
   this.getLBPResponses = function(patches) {
     // check that it is initialized
@@ -2170,7 +2170,7 @@ var webglFilter = function() {
     gl.viewport(0, 0, patchWidth, patchHeight*numBlocks);
 
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
-    gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER)
+    gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER);
 
     // draw to framebuffer
     gl.drawArrays(gl.TRIANGLES, 0, patchCells*6);
@@ -2197,7 +2197,7 @@ var webglFilter = function() {
     gl.viewport(0, 0, patchWidth, patchHeight*numBlocks);
 
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
-    gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER)
+    gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER);
 
     // draw to framebuffer
     gl.drawArrays(gl.TRIANGLES, 0, patchCells*6);
@@ -2207,7 +2207,7 @@ var webglFilter = function() {
     var responses = drawOut('lbp');
 
     return responses;
-  }
+  };
 
   var insertPatches = function(patches) {
     // pass patches into texture, each patch in either r, g, b or a
@@ -2257,7 +2257,7 @@ var webglFilter = function() {
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
-  }
+  };
 
   var insertFilter = function(filter, textureNum) {
     var filterSize = filterWidth*filterHeight;
@@ -2301,7 +2301,7 @@ var webglFilter = function() {
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
-  }
+  };
 
   var drawOut = function(type) {
     // switch programs
@@ -2312,7 +2312,7 @@ var webglFilter = function() {
     gl.viewport(0, 0, newCanvasWidth, newCanvasHeight);
 
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
-    gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER)
+    gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER);
 
     gl.bindBuffer(gl.ARRAY_BUFFER, drawRectBuffer);
     gl.bufferData(
@@ -2362,7 +2362,7 @@ var webglFilter = function() {
     }
 
     return responses;
-  }
+  };
 
   var addBias = function(responses, bias) {
     // do a little trick to add bias in the logit function
@@ -2374,7 +2374,7 @@ var webglFilter = function() {
       }
     }
     return responses;
-  }
+  };
 
   var splitArray = function(array, parts) {
     var sp = [];
@@ -2392,7 +2392,7 @@ var webglFilter = function() {
     }
     sp.push(ta);
     return sp;
-  }
+  };
 
   var getOutput = function() {
     // get data
@@ -2400,7 +2400,7 @@ var webglFilter = function() {
     var data = gl.readPixels(0, 0, canvas.width, canvas.height, gl.RGBA, gl.UNSIGNED_BYTE, pixelValues);
     // return
     return pixelValues;
-  }
+  };
 
   var unpackToFloat = function(array) {
     // convert packed floats to proper floats : see http://stackoverflow.com/questions/9882716/packing-float-into-vec4-how-does-this-code-work
@@ -2410,7 +2410,7 @@ var webglFilter = function() {
       newArray[(i / 4) >> 0] = ((array[i]/(256*256*256*256))+(array[i+1]/(256*256*256))+(array[i+2]/(256*256))+(array[i+3]/256));
     }
     return newArray;
-  }
+  };
 
   var normalizeFilterMatrix = function(response) {
     // normalize responses to lie within [0,1]
@@ -2425,7 +2425,7 @@ var webglFilter = function() {
     var dist = max-min;
 
     if (dist == 0) {
-      console.log("a patchresponse was monotone, causing normalization to fail. Leaving it unchanged.")
+      console.log("a patchresponse was monotone, causing normalization to fail. Leaving it unchanged.");
       response = response.map(function() {return 1});
     } else {
       for (var i = 0;i < msize;i++) {
@@ -2577,9 +2577,8 @@ var webglFilter = function() {
       if (container) {
         container.innerHTML = makeFailHTML(str);
       }
-    };
-
-    if (!window.WebGLRenderingContext) {
+    }
+      if (!window.WebGLRenderingContext) {
       //showLink(GET_A_WEBGL_BROWSER);
       return null;
     }
@@ -2610,7 +2609,7 @@ var webglFilter = function() {
       }
     }
     return context;
-  }
+  };
 
   var updateCSSIfInIFrame = function() {
     if (isInIFrame()) {
@@ -2665,7 +2664,7 @@ var webglFilter = function() {
     }
 
     return shader;
-  }
+  };
 
   /**
    * Creates a program, attaches shaders, binds attrib locations, links the
@@ -2770,13 +2769,13 @@ var svmFilter = function() {
       _fft.real_fft2d(array,_im_part);
 
       return [array, _im_part];
-  }
+  };
 
   this.ifft = function(rn, cn) {
       // in-place
       _fft.real_ifft2d(rn, cn);
       return rn;
-  }
+  };
 
   var complex_mult_inplace = function(cn1, cn2) {
       // in-place, cn1 is the one modified
@@ -2787,7 +2786,7 @@ var svmFilter = function() {
           cn1[0][r] = temp1;
           cn1[1][r] = temp2;
       }
-  }
+  };
 
   this.init = function(filter_input, bias_input, numPatches, filterWidth, searchWidth) {
 
@@ -2847,7 +2846,7 @@ var svmFilter = function() {
     num_patches = numPatches;
     filter_width = filterWidth;
     search_width = searchWidth;
-  }
+  };
 
   this.getResponses = function(patches) {
     var response, temp, edge;
@@ -2907,7 +2906,7 @@ var svmFilter = function() {
     }
 
     return responses;
-  }
+  };
 
   var normalizePatches = function(patch) {
     var patch_width = filter_width-1+search_width;
@@ -2916,7 +2915,7 @@ var svmFilter = function() {
     var value;
     for (var j = 0;j < patch_width;j++) {
       for (var k = 0;k < patch_width;k++) {
-        value = patch[k + (patch_width*j)]
+        value = patch[k + (patch_width*j)];
         if (value < min) {
           min = value;
         }
@@ -2932,7 +2931,7 @@ var svmFilter = function() {
       }
     }
     return patch;
-  }
+  };
 
   var logisticResponse = function(response) {
     // create probability by doing logistic transformation
@@ -2942,7 +2941,7 @@ var svmFilter = function() {
       }
     }
     return response
-  }
+  };
 
   var upperPowerOfTwo = function(x) {
     x--;
@@ -2953,7 +2952,7 @@ var svmFilter = function() {
     x |= x >> 16;
     x++;
     return x;
-  }
+  };
 
   var inplaceNormalizeFilterMatrix = function(response) {
     // normalize responses to lie within [0,1]
@@ -2974,7 +2973,7 @@ var svmFilter = function() {
         response[i] = (response[i]-min)/dist;
       }
     }
-  }
+  };
 
   /**
    * Fast Fourier Transform
@@ -3000,12 +2999,12 @@ var svmFilter = function() {
       } else {
         throw new Error("init: radix-2 required");
       }
-    }
+    };
 
     // 1D-FFT
     this.fft1d = function (re, im) {
       fft(re, im, 1);
-    }
+    };
 
     // 1D-IFFT
     this.ifft1d = function (re, im) {
@@ -3015,7 +3014,7 @@ var svmFilter = function() {
         re[i] *= n;
         im[i] *= n;
       }
-    }
+    };
 
     // 2D-FFT
     this.fft2d = function (re, im) {
@@ -3048,7 +3047,7 @@ var svmFilter = function() {
           im[i] = _tim[y2];
         }
       }
-    }
+    };
 
     // 2D-IFFT
     this.ifft2d = function (re, im) {
@@ -3080,7 +3079,7 @@ var svmFilter = function() {
           im[i] = _tim[y2];
         }
       }
-    }
+    };
 
     // 2D-IFFT, real-valued
     // only outputs the real valued part
@@ -3112,7 +3111,7 @@ var svmFilter = function() {
         _tre[_n/2] = re[(halfn*_n) + i];
         _tim[_n/2] = re[(halfn*_n) + i2];
         for (var x2=1;x2<halfn;x2++) {
-          rowIdx = x2*_n
+          rowIdx = x2*_n;
           _tre[x2] = re[rowIdx+i] - im[rowIdx + i2];
           _tre[_n - x2] = re[rowIdx+i] + im[rowIdx + i2];
           _tim[x2] = im[rowIdx+i] + re[rowIdx+i2];
@@ -3126,7 +3125,7 @@ var svmFilter = function() {
           re[i2] = _tim[y2];
         }
       }
-    }
+    };
 
     // 2D-FFT, real-valued only
     // ignores the imaginary input
@@ -3182,7 +3181,7 @@ var svmFilter = function() {
           im[i] = _tim[y2];
         }
       }
-    }
+    };
 
     // core operation of FFT
     function fft(re, im, inv) {
@@ -3310,7 +3309,7 @@ var svmFilter = function() {
       }
     }
   }
-}
+};
 
 // requires mosse.js
 
@@ -3327,7 +3326,7 @@ var mosseFilterResponses = function() {
       var temp = {};
       temp.width = filterWidth;
       temp.height = filterHeight;
-      var filterLength = filterWidth*filterHeight
+      var filterLength = filterWidth*filterHeight;
       var flar_fi0 = new Float64Array(filterLength);
       var flar_fi1 = new Float64Array(filterLength);
       for (var j = 0;j < filterLength;j++) {
@@ -3341,7 +3340,7 @@ var mosseFilterResponses = function() {
     }
 
     num_Patches = numPatches;
-  }
+  };
 
   this.getResponses = function(patches) {
     for (var i = 0;i < num_Patches;i++) {
@@ -3351,7 +3350,7 @@ var mosseFilterResponses = function() {
     }
 
     return responses;
-  }
+  };
 
   var logisticResponse = function(response) {
     // create probability by doing logistic transformation
@@ -3360,7 +3359,7 @@ var mosseFilterResponses = function() {
       response[j] = 1.0/(1.0 + Math.exp(- (response[j]-1.0) ));
     }
     return response;
-  }
+  };
 
   var normalizeFilterMatrix = function(response) {
     // normalize responses to lie within [0,1]
@@ -3375,7 +3374,7 @@ var mosseFilterResponses = function() {
     var dist = max-min;
 
     if (dist == 0) {
-      console.log("a patchresponse was monotone, causing normalization to fail. Leaving it unchanged.")
+      console.log("a patchresponse was monotone, causing normalization to fail. Leaving it unchanged.");
       response = response.map(function() {return 1});
     } else {
       for (var i = 0;i < msize;i++) {
@@ -3385,7 +3384,7 @@ var mosseFilterResponses = function() {
 
     return response
   }
-}
+};
 
 // simple wrapper for jsfeat face detector that runs as a webworker
 var jsfeat_face = function(video, maxWorkSize, useWebWorkers) {
@@ -3620,7 +3619,7 @@ numeric.bench = function bench (f,interval) {
     while(i>0) { f(); i--; }
     t2 = new Date();
     return 1000*(3*n-1)/(t2-t1);
-}
+};
 
 numeric._myIndexOf = (function _myIndexOf(w) {
     var n = this.length,k;
@@ -3693,7 +3692,7 @@ numeric.prettyPrint = function prettyPrint(x) {
     }
     foo(x);
     return ret.join('');
-}
+};
 
 numeric.parseDate = function parseDate(d) {
     function foo(d) {
@@ -3704,7 +3703,7 @@ numeric.parseDate = function parseDate(d) {
         return ret;
     }
     return foo(d);
-}
+};
 
 numeric.parseFloat = function parseFloat_(d) {
     function foo(d) {
@@ -3715,7 +3714,7 @@ numeric.parseFloat = function parseFloat_(d) {
         return ret;
     }
     return foo(d);
-}
+};
 
 numeric.parseCSV = function parseCSV(t) {
     var foo = t.split('\n');
@@ -3723,7 +3722,7 @@ numeric.parseCSV = function parseCSV(t) {
     var ret = [];
     var pat = /(([^'",]*)|('[^']*')|("[^"]*")),/g;
     var patnum = /^\s*(([+-]?[0-9]+(\.[0-9]*)?(e[+-]?[0-9]+)?)|([+-]?[0-9]*(\.[0-9]+)?(e[+-]?[0-9]+)?))\s*$/;
-    var stripper = function(n) { return n.substr(0,n.length-1); }
+    var stripper = function(n) { return n.substr(0,n.length-1); };
     var count = 0;
     for(k=0;k<foo.length;k++) {
       var bar = (foo[k]+",").match(pat),baz;
@@ -3738,7 +3737,7 @@ numeric.parseCSV = function parseCSV(t) {
       }
     }
     return ret;
-}
+};
 
 numeric.toCSV = function toCSV(A) {
     var s = numeric.dim(A);
@@ -3752,14 +3751,14 @@ numeric.toCSV = function toCSV(A) {
         ret[i] = row.join(', ');
     }
     return ret.join('\n')+'\n';
-}
+};
 
 numeric.getURL = function getURL(url) {
     var client = new XMLHttpRequest();
     client.open("GET",url,false);
     client.send();
     return client;
-}
+};
 
 numeric.imageURL = function imageURL(img) {
     function base64(A) {
@@ -3901,14 +3900,14 @@ numeric.imageURL = function imageURL(img) {
     stream.push(96);  // CRC3
     stream.push(130); // CRC4
     return 'data:image/png;base64,'+base64(stream);
-}
+};
 
 // 2. Linear algebra with Arrays.
 numeric._dim = function _dim(x) {
     var ret = [];
     while(typeof x === "object") { ret.push(x.length); x = x[0]; }
     return ret;
-}
+};
 
 numeric.dim = function dim(x) {
     var y,z;
@@ -3924,7 +3923,7 @@ numeric.dim = function dim(x) {
         return [x.length];
     }
     return [];
-}
+};
 
 numeric.mapreduce = function mapreduce(body,init) {
     return Function('x','accum','_s','_k',
@@ -3952,7 +3951,7 @@ numeric.mapreduce = function mapreduce(body,init) {
             '}\n'+
             'return accum;'
             );
-}
+};
 numeric.mapreduce2 = function mapreduce2(body,setup) {
     return Function('x',
             'var n = x.length;\n'+
@@ -3963,7 +3962,7 @@ numeric.mapreduce2 = function mapreduce2(body,setup) {
             '}\n'+
             'return accum;'
             );
-}
+};
 
 
 numeric.same = function same(x,y) {
@@ -3977,7 +3976,7 @@ numeric.same = function same(x,y) {
         else { return false; }
     }
     return true;
-}
+};
 
 numeric.rep = function rep(s,v,k) {
     if(typeof k === "undefined") { k=0; }
@@ -3989,7 +3988,7 @@ numeric.rep = function rep(s,v,k) {
     }
     for(i=n-1;i>=0;i--) { ret[i] = numeric.rep(s,v,k+1); }
     return ret;
-}
+};
 
 
 numeric.dotMMsmall = function dotMMsmall(x,y) {
@@ -4011,7 +4010,7 @@ numeric.dotMMsmall = function dotMMsmall(x,y) {
         ret[i] = foo;
     }
     return ret;
-}
+};
 numeric._getCol = function _getCol(A,j,x) {
     var n = A.length, i;
     for(i=n-1;i>0;--i) {
@@ -4020,7 +4019,7 @@ numeric._getCol = function _getCol(A,j,x) {
         x[i] = A[i][j];
     }
     if(i===0) x[0] = A[0][j];
-}
+};
 numeric.dotMMbig = function dotMMbig(x,y){
     var gc = numeric._getCol, p = y.length, v = Array(p);
     var m = x.length, n = y[0].length, A = new Array(m), xj;
@@ -4039,14 +4038,14 @@ numeric.dotMMbig = function dotMMbig(x,y){
         }
     }
     return A;
-}
+};
 
 numeric.dotMV = function dotMV(x,y) {
     var p = x.length, q = y.length,i;
     var ret = Array(p), dotVV = numeric.dotVV;
     for(i=p-1;i>=0;i--) { ret[i] = dotVV(x[i],y); }
     return ret;
-}
+};
 
 numeric.dotVM = function dotVM(x,y) {
     var i,j,k,p,q,r,ret,foo,bar,woo,i0,k0,p0,r0,s1,s2,s3,baz,accum;
@@ -4062,7 +4061,7 @@ numeric.dotVM = function dotVM(x,y) {
         ret[k] = woo;
     }
     return ret;
-}
+};
 
 numeric.dotVV = function dotVV(x,y) {
     var i,n=x.length,i1,ret = x[n-1]*y[n-1];
@@ -4072,7 +4071,7 @@ numeric.dotVV = function dotVV(x,y) {
     }
     if(i===0) { ret += x[0]*y[0]; }
     return ret;
-}
+};
 
 numeric.dot = function dot(x,y) {
     var d = numeric.dim;
@@ -4088,7 +4087,7 @@ numeric.dot = function dot(x,y) {
     case 0: return x*y;
     default: throw new Error('numeric.dot only works on vectors and matrices');
     }
-}
+};
 
 numeric.diag = function diag(d) {
     var i,i1,j,n = d.length, A = Array(n), Ai;
@@ -4109,7 +4108,7 @@ numeric.diag = function diag(d) {
         A[i] = Ai;
     }
     return A;
-}
+};
 numeric.getDiag = function(A) {
     var n = Math.min(A.length,A[0].length),i,ret = Array(n);
     for(i=n-1;i>=1;--i) {
@@ -4121,9 +4120,9 @@ numeric.getDiag = function(A) {
         ret[0] = A[0][0];
     }
     return ret;
-}
+};
 
-numeric.identity = function identity(n) { return numeric.diag(numeric.rep([n],1)); }
+numeric.identity = function identity(n) { return numeric.diag(numeric.rep([n],1)); };
 numeric.pointwise = function pointwise(params,body,setup) {
     if(typeof setup === "undefined") { setup = ""; }
     var fun = [];
@@ -4156,7 +4155,7 @@ numeric.pointwise = function pointwise(params,body,setup) {
             'return ret;'
             );
     return Function.apply(null,fun);
-}
+};
 numeric.pointwise2 = function pointwise2(params,body,setup) {
     if(typeof setup === "undefined") { setup = ""; }
     var fun = [];
@@ -4181,7 +4180,7 @@ numeric.pointwise2 = function pointwise2(params,body,setup) {
             'return ret;'
             );
     return Function.apply(null,fun);
-}
+};
 numeric._biforeach = (function _biforeach(x,y,s,k,f) {
     if(k === s.length-1) { f(x,y); return; }
     var i,n=s[k];
@@ -4388,7 +4387,7 @@ numeric.trunc = function trunc(x,y) {
     }
     if (typeof y === "object") return numeric.truncSV(x,y);
     return Math.round(x/y)*y;
-}
+};
 
 numeric.inv = function inv(x) {
     var s = numeric.dim(x), abs = Math.abs, m = s[0], n = s[1];
@@ -4416,7 +4415,7 @@ numeric.inv = function inv(x) {
         }
     }
     return I;
-}
+};
 
 numeric.det = function det(x) {
     var s = numeric.dim(x);
@@ -4444,7 +4443,7 @@ numeric.det = function det(x) {
         ret *= Aj[j];
     }
     return ret*A[j][j];
-}
+};
 
 numeric.transpose = function transpose(x) {
     var i,j,m = x.length,n = x[0].length, ret=Array(n),A0,A1,Bj;
@@ -4471,7 +4470,7 @@ numeric.transpose = function transpose(x) {
         if(j===0) { ret[0][0] = A0[0]; }
     }
     return ret;
-}
+};
 numeric.negtranspose = function negtranspose(x) {
     var i,j,m = x.length,n = x[0].length, ret=Array(n),A0,A1,Bj;
     for(j=0;j<n;j++) ret[j] = Array(m);
@@ -4497,7 +4496,7 @@ numeric.negtranspose = function negtranspose(x) {
         if(j===0) { ret[0][0] = -A0[0]; }
     }
     return ret;
-}
+};
 
 numeric._random = function _random(s,k) {
     var i,n=s[k],ret=Array(n), rnd;
@@ -4512,10 +4511,10 @@ numeric._random = function _random(s,k) {
     }
     for(i=n-1;i>=0;i--) ret[i] = _random(s,k+1);
     return ret;
-}
-numeric.random = function random(s) { return numeric._random(s,0); }
+};
+numeric.random = function random(s) { return numeric._random(s,0); };
 
-numeric.norm2 = function norm2(x) { return Math.sqrt(numeric.norm2Squared(x)); }
+numeric.norm2 = function norm2(x) { return Math.sqrt(numeric.norm2Squared(x)); };
 
 numeric.linspace = function linspace(a,b,n) {
     if(typeof n === "undefined") n = Math.max(Math.round(b-a)+1,1);
@@ -4524,7 +4523,7 @@ numeric.linspace = function linspace(a,b,n) {
     n--;
     for(i=n;i>=0;i--) { ret[i] = (i*b+(n-i)*a)/n; }
     return ret;
-}
+};
 
 numeric.getBlock = function getBlock(x,from,to) {
     var s = numeric.dim(x);
@@ -4538,7 +4537,7 @@ numeric.getBlock = function getBlock(x,from,to) {
         return ret;
     }
     return foo(x,0);
-}
+};
 
 numeric.setBlock = function setBlock(x,from,to,B) {
     var s = numeric.dim(x);
@@ -4549,7 +4548,7 @@ numeric.setBlock = function setBlock(x,from,to,B) {
     }
     foo(x,B,0);
     return x;
-}
+};
 
 numeric.getRange = function getRange(A,I,J) {
     var m = I.length, n = J.length;
@@ -4562,7 +4561,7 @@ numeric.getRange = function getRange(A,I,J) {
         for(j=n-1;j!==-1;--j) Bi[j] = AI[J[j]];
     }
     return B;
-}
+};
 
 numeric.blockMatrix = function blockMatrix(X) {
     var s = numeric.dim(X);
@@ -4588,7 +4587,7 @@ numeric.blockMatrix = function blockMatrix(X) {
         I += X[i][0].length;
     }
     return Z;
-}
+};
 
 numeric.tensor = function tensor(x,y) {
     if(typeof x === "number" || typeof y === "number") return numeric.mul(x,y);
@@ -4613,11 +4612,11 @@ numeric.tensor = function tensor(x,y) {
         A[i] = Ai;
     }
     return A;
-}
+};
 
 // 3. The Tensor type T
-numeric.T = function T(x,y) { this.x = x; this.y = y; }
-numeric.t = function t(x,y) { return new numeric.T(x,y); }
+numeric.T = function T(x,y) { this.x = x; this.y = y; };
+numeric.t = function t(x,y) { return new numeric.T(x,y); };
 
 numeric.Tbinop = function Tbinop(rr,rc,cr,cc,setup) {
     var io = numeric.indexOf;
@@ -4645,7 +4644,7 @@ numeric.Tbinop = function Tbinop(rr,rc,cr,cc,setup) {
             '}\n'+
             'return new numeric.T('+rr+');\n'
     );
-}
+};
 
 numeric.T.prototype.add = numeric.Tbinop(
         'add(x.x,y.x)',
@@ -4670,14 +4669,14 @@ numeric.T.prototype.reciprocal = function reciprocal() {
         return new numeric.T(div(this.x,d),div(numeric.neg(this.y),d));
     }
     return new T(div(1,this.x));
-}
+};
 numeric.T.prototype.div = function div(y) {
     if(!(y instanceof numeric.T)) y = new numeric.T(y);
     if(y.y) { return this.mul(y.reciprocal()); }
     var div = numeric.div;
     if(this.y) { return new numeric.T(div(this.x,y.x),div(this.y,y.x)); }
     return new numeric.T(div(this.x,y.x));
-}
+};
 numeric.T.prototype.dot = numeric.Tbinop(
         'dot(x.x,y.x)',
         'dot(x.x,y.x),dot(x.x,y.y)',
@@ -4688,12 +4687,12 @@ numeric.T.prototype.transpose = function transpose() {
     var t = numeric.transpose, x = this.x, y = this.y;
     if(y) { return new numeric.T(t(x),t(y)); }
     return new numeric.T(t(x));
-}
+};
 numeric.T.prototype.transjugate = function transjugate() {
     var t = numeric.transpose, x = this.x, y = this.y;
     if(y) { return new numeric.T(t(x),numeric.negtranspose(y)); }
     return new numeric.T(t(x));
-}
+};
 numeric.Tunop = function Tunop(r,c,s) {
     if(typeof s !== "string") { s = ''; }
     return Function(
@@ -4704,7 +4703,7 @@ numeric.Tunop = function Tunop(r,c,s) {
             '}\n'+
             r+';\n'
     );
-}
+};
 
 numeric.T.prototype.exp = numeric.Tunop(
         'return new numeric.T(ex)',
@@ -4800,7 +4799,7 @@ numeric.T.prototype.inv = function inv() {
         }
     }
     return new numeric.T(Rx,Ry);
-}
+};
 numeric.T.prototype.get = function get(i) {
     var x = this.x, y = this.y, k = 0, ik, n = i.length;
     if(y) {
@@ -4818,7 +4817,7 @@ numeric.T.prototype.get = function get(i) {
         k++;
     }
     return new numeric.T(x);
-}
+};
 numeric.T.prototype.set = function set(i,v) {
     var x = this.x, y = this.y, k = 0, ik, n = i.length, vx = v.x, vy = v.y;
     if(n===0) {
@@ -4865,7 +4864,7 @@ numeric.T.prototype.set = function set(i,v) {
     ik = i[k];
     x[ik] = vx;
     return this;
-}
+};
 numeric.T.prototype.getRows = function getRows(i0,i1) {
     var n = i1-i0+1, j;
     var rx = Array(n), ry, x = this.x, y = this.y;
@@ -4876,7 +4875,7 @@ numeric.T.prototype.getRows = function getRows(i0,i1) {
         return new numeric.T(rx,ry);
     }
     return new numeric.T(rx);
-}
+};
 numeric.T.prototype.setRows = function setRows(i0,i1,A) {
     var j;
     var rx = this.x, ry = this.y, x = A.x, y = A.y;
@@ -4888,12 +4887,12 @@ numeric.T.prototype.setRows = function setRows(i0,i1,A) {
         for(j=i0;j<=i1;j++) { ry[j] = numeric.rep([x[j-i0].length],0); }
     }
     return this;
-}
+};
 numeric.T.prototype.getRow = function getRow(k) {
     var x = this.x, y = this.y;
     if(y) { return new numeric.T(x[k],y[k]); }
     return new numeric.T(x[k]);
-}
+};
 numeric.T.prototype.setRow = function setRow(i,v) {
     var rx = this.x, ry = this.y, x = v.x, y = v.y;
     rx[i] = x;
@@ -4904,13 +4903,13 @@ numeric.T.prototype.setRow = function setRow(i,v) {
         ry = numeric.rep([x.length],0);
     }
     return this;
-}
+};
 
 numeric.T.prototype.getBlock = function getBlock(from,to) {
     var x = this.x, y = this.y, b = numeric.getBlock;
     if(y) { return new numeric.T(b(x,from,to),b(y,from,to)); }
     return new numeric.T(b(x,from,to));
-}
+};
 numeric.T.prototype.setBlock = function setBlock(from,to,A) {
     if(!(A instanceof numeric.T)) A = new numeric.T(A);
     var x = this.x, y = this.y, b = numeric.setBlock, Ax = A.x, Ay = A.y;
@@ -4922,31 +4921,31 @@ numeric.T.prototype.setBlock = function setBlock(from,to,A) {
     }
     b(x,from,to,Ax);
     if(y) b(y,from,to,numeric.rep(numeric.dim(Ax),0));
-}
+};
 numeric.T.rep = function rep(s,v) {
     var T = numeric.T;
     if(!(v instanceof T)) v = new T(v);
     var x = v.x, y = v.y, r = numeric.rep;
     if(y) return new T(r(s,x),r(s,y));
     return new T(r(s,x));
-}
+};
 numeric.T.diag = function diag(d) {
     if(!(d instanceof numeric.T)) d = new numeric.T(d);
     var x = d.x, y = d.y, diag = numeric.diag;
     if(y) return new numeric.T(diag(x),diag(y));
     return new numeric.T(diag(x));
-}
+};
 numeric.T.eig = function eig() {
     if(this.y) { throw new Error('eig: not implemented for complex matrices.'); }
     return numeric.eig(this.x);
-}
-numeric.T.identity = function identity(n) { return new numeric.T(numeric.identity(n)); }
+};
+numeric.T.identity = function identity(n) { return new numeric.T(numeric.identity(n)); };
 numeric.T.prototype.getDiag = function getDiag() {
     var n = numeric;
     var x = this.x, y = this.y;
     if(y) { return new n.T(n.getDiag(x),n.getDiag(y)); }
     return new n.T(n.getDiag(x));
-}
+};
 
 // 4. Eigenvalues of real matrices
 
@@ -4958,7 +4957,7 @@ numeric.house = function house(x) {
     var foo = numeric.norm2(v);
     if(foo === 0) { /* this should not happen */ throw new Error('eig: internal error'); }
     return numeric.div(v,foo);
-}
+};
 
 numeric.toUpperHessenberg = function toUpperHessenberg(me) {
     var s = numeric.dim(me);
@@ -4982,7 +4981,7 @@ numeric.toUpperHessenberg = function toUpperHessenberg(me) {
         }
     }
     return {H:A, Q:Q};
-}
+};
 
 numeric.epsilon = 2.220446049250313e-16;
 
@@ -5071,7 +5070,7 @@ numeric.QRFrancis = function(H,maxiter) {
         }
     }
     throw new Error('numeric: eigenvalue iteration does not converge -- increase maxiter?');
-}
+};
 
 numeric.eig = function eig(A,maxiter) {
     var QH = numeric.toUpperHessenberg(A);
@@ -5146,7 +5145,7 @@ numeric.eig = function eig(A,maxiter) {
                     E.set([j,k],(R.get([k,j]).neg().sub(x.dot(y))).div(Rk.sub(Rj)));
                 } else {
                     E.setRow(j,E.getRow(k));
-                    continue;
+
                 }
             }
         }
@@ -5187,7 +5186,7 @@ numeric.ccsSparse = function ccsSparse(A) {
         }
     }
     return [Ai,Aj,Av];
-}
+};
 numeric.ccsFull = function ccsFull(A) {
     var Ai = A[0], Aj = A[1], Av = A[2], s = numeric.ccsDim(A), m = s[0], n = s[1], i,j,j0,j1,k;
     var B = numeric.rep([m,n],0);
@@ -5197,7 +5196,7 @@ numeric.ccsFull = function ccsFull(A) {
         for(j=j0;j<j1;++j) { B[Aj[j]][i] = Av[j]; }
     }
     return B;
-}
+};
 numeric.ccsTSolve = function ccsTSolve(A,b,x,bj,xj) {
     var Ai = A[0], Aj = A[1], Av = A[2],m = Ai.length-1, max = Math.max,n=0;
     if(typeof bj === "undefined") x = numeric.rep([m],0);
@@ -5228,12 +5227,12 @@ numeric.ccsTSolve = function ccsTSolve(A,b,x,bj,xj) {
         }
     }
     return x;
-}
+};
 numeric.ccsDFS = function ccsDFS(n) {
     this.k = Array(n);
     this.k1 = Array(n);
     this.j = Array(n);
-}
+};
 numeric.ccsDFS.prototype.dfs = function dfs(J,Ai,Aj,x,xj,Pinv) {
     var m = 0,foo,n=xj.length;
     var k = this.k, k1 = this.k1, j = this.j,km,k11;
@@ -5262,7 +5261,7 @@ numeric.ccsDFS.prototype.dfs = function dfs(J,Ai,Aj,x,xj,Pinv) {
             } else ++km;
         }
     }
-}
+};
 numeric.ccsLPSolve = function ccsLPSolve(A,B,x,xj,I,Pinv,dfs) {
     var Ai = A[0], Aj = A[1], Av = A[2],m = Ai.length-1, n=0;
     var Bi = B[0], Bj = B[1], Bv = B[2];
@@ -5286,7 +5285,7 @@ numeric.ccsLPSolve = function ccsLPSolve(A,B,x,xj,I,Pinv,dfs) {
         }
     }
     return x;
-}
+};
 numeric.ccsLUP1 = function ccsLUP1(A,threshold) {
     var m = A[0].length-1;
     var L = [numeric.rep([m+1],0),[],[]], U = [numeric.rep([m+1], 0),[],[]];
@@ -5333,12 +5332,12 @@ numeric.ccsLUP1 = function ccsLUP1(A,threshold) {
     }
     for(j=Lj.length-1;j!==-1;--j) { Lj[j] = Pinv[Lj[j]]; }
     return {L:L, U:U, P:P, Pinv:Pinv};
-}
+};
 numeric.ccsDFS0 = function ccsDFS0(n) {
     this.k = Array(n);
     this.k1 = Array(n);
     this.j = Array(n);
-}
+};
 numeric.ccsDFS0.prototype.dfs = function dfs(J,Ai,Aj,x,xj,Pinv,P) {
     var m = 0,foo,n=xj.length;
     var k = this.k, k1 = this.k1, j = this.j,km,k11;
@@ -5369,7 +5368,7 @@ numeric.ccsDFS0.prototype.dfs = function dfs(J,Ai,Aj,x,xj,Pinv,P) {
             } else ++km;
         }
     }
-}
+};
 numeric.ccsLPSolve0 = function ccsLPSolve0(A,B,y,xj,I,Pinv,P,dfs) {
     var Ai = A[0], Aj = A[1], Av = A[2],m = Ai.length-1, n=0;
     var Bi = B[0], Bj = B[1], Bv = B[2];
@@ -5391,7 +5390,7 @@ numeric.ccsLPSolve0 = function ccsLPSolve0(A,B,y,xj,I,Pinv,P,dfs) {
         for(k=j0;k<j1;++k) y[Aj[k]] -= a*Av[k];
         y[l] = a;
     }
-}
+};
 numeric.ccsLUP0 = function ccsLUP0(A,threshold) {
     var m = A[0].length-1;
     var L = [numeric.rep([m+1],0),[],[]], U = [numeric.rep([m+1], 0),[],[]];
@@ -5437,10 +5436,10 @@ numeric.ccsLUP0 = function ccsLUP0(A,threshold) {
     }
     for(j=Lj.length-1;j!==-1;--j) { Lj[j] = Pinv[Lj[j]]; }
     return {L:L, U:U, P:P, Pinv:Pinv};
-}
+};
 numeric.ccsLUP = numeric.ccsLUP0;
 
-numeric.ccsDim = function ccsDim(A) { return [numeric.sup(A[1])+1,A[0].length-1]; }
+numeric.ccsDim = function ccsDim(A) { return [numeric.sup(A[1])+1,A[0].length-1]; };
 numeric.ccsGetBlock = function ccsGetBlock(A,i,j) {
     var s = numeric.ccsDim(A),m=s[0],n=s[1];
     if(typeof i === "undefined") { i = numeric.linspace(0,m-1); }
@@ -5475,7 +5474,7 @@ numeric.ccsGetBlock = function ccsGetBlock(A,i,j) {
         Bi[q+1] = count;
     }
     return B;
-}
+};
 
 numeric.ccsDot = function ccsDot(A,B) {
     var Ai = A[0], Aj = A[1], Av = A[2];
@@ -5518,7 +5517,7 @@ numeric.ccsDot = function ccsDot(A,B) {
         Ci[k+1] = Ci[k]+p;
     }
     return C;
-}
+};
 
 numeric.ccsLUPSolve = function ccsLUPSolve(LUP,B) {
     var L = LUP.L, U = LUP.U, P = LUP.P;
@@ -5558,7 +5557,7 @@ numeric.ccsLUPSolve = function ccsLUPSolve(LUP,B) {
         Xi[i+1] = N;
     }
     return [Xi,Xj,Xv];
-}
+};
 
 numeric.ccsbinop = function ccsbinop(body,setup) {
     if(typeof setup === "undefined") setup='';
@@ -5642,7 +5641,7 @@ numeric.ccsScatter = function ccsScatter(A) {
         ptr[Aii]=ptr[Aii]+1;
     }
     return [Ri,Rj,Rv];
-}
+};
 
 numeric.ccsGather = function ccsGather(A) {
     var Ai = A[0], Aj = A[1], Av = A[2];
@@ -5661,7 +5660,7 @@ numeric.ccsGather = function ccsGather(A) {
         }
     }
     return [Ri,Rj,Rv];
-}
+};
 
 // The following sparse linear algebra routines are deprecated.
 
@@ -5690,7 +5689,7 @@ numeric.sclone = function clone(A,k,n) {
         if(A.hasOwnProperty(i)) ret[i] = clone(A[i],k+1,n);
     }
     return ret;
-}
+};
 
 numeric.sdiag = function diag(d) {
     var n = d.length,i,ret = Array(n),i1,i2,i3;
@@ -5701,9 +5700,9 @@ numeric.sdiag = function diag(d) {
     }
     if(i===0) { ret[0] = []; ret[0][0] = d[i]; }
     return ret;
-}
+};
 
-numeric.sidentity = function identity(n) { return numeric.sdiag(numeric.rep([n],1)); }
+numeric.sidentity = function identity(n) { return numeric.sdiag(numeric.rep([n],1)); };
 
 numeric.stranspose = function transpose(A) {
     var ret = [], n = A.length, i,j,Ai;
@@ -5717,7 +5716,7 @@ numeric.stranspose = function transpose(A) {
         }
     }
     return ret;
-}
+};
 
 numeric.sLUP = function LUP(A,tol) {
     throw new Error("The function numeric.sLUP had a bug in it and has been removed. Please use the new numeric.ccsLUP function instead.");
@@ -5742,7 +5741,7 @@ numeric.sdotMM = function dotMM(A,B) {
         ret[i] = reti;
     }
     return ret;
-}
+};
 
 numeric.sdotMV = function dotMV(A,x) {
     var p = A.length, Ai, i,j;
@@ -5757,7 +5756,7 @@ numeric.sdotMV = function dotMV(A,x) {
         if(accum) ret[i] = accum;
     }
     return ret;
-}
+};
 
 numeric.sdotVM = function dotMV(x,A) {
     var i,j,Ai,alpha;
@@ -5773,13 +5772,13 @@ numeric.sdotVM = function dotMV(x,A) {
         }
     }
     return ret;
-}
+};
 
 numeric.sdotVV = function dotVV(x,y) {
     var i,ret=0;
     for(i in x) { if(x[i] && y[i]) ret+= x[i]*y[i]; }
     return ret;
-}
+};
 
 numeric.sdot = function dot(A,B) {
     var m = numeric.sdim(A).length, n = numeric.sdim(B).length;
@@ -5792,7 +5791,7 @@ numeric.sdot = function dot(A,B) {
     case 2002: return numeric.sdotMM(A,B);
     default: throw new Error('numeric.sdot not implemented for tensors of order '+m+' and '+n);
     }
-}
+};
 
 numeric.sscatter = function scatter(V) {
     var n = V[0].length, Vij, i, j, m = V.length, A = [], Aj;
@@ -5807,7 +5806,7 @@ numeric.sscatter = function scatter(V) {
         Aj[V[j][i]] = V[j+1][i];
     }
     return A;
-}
+};
 
 numeric.sgather = function gather(A,ret,k) {
     if(typeof ret === "undefined") ret = [];
@@ -5831,7 +5830,7 @@ numeric.sgather = function gather(A,ret,k) {
     }
     if(k.length>n) k.pop();
     return ret;
-}
+};
 
 // 6. Coordinate matrices
 numeric.cLU = function LU(A) {
@@ -5936,7 +5935,7 @@ numeric.cgrid = function grid(n,shape) {
     if(typeof shape !== "function") {
         switch(shape) {
         case 'L':
-            shape = function(i,j) { return (i>=n[0]/2 || j<n[1]/2); }
+            shape = function(i,j) { return (i>=n[0]/2 || j<n[1]/2); };
             break;
         default:
             shape = function(i,j) { return true; };
@@ -5950,7 +5949,7 @@ numeric.cgrid = function grid(n,shape) {
             count++;
         }
     return ret;
-}
+};
 
 numeric.cdelsq = function delsq(g) {
     var dir = [[-1,0],[0,-1],[0,1],[1,0]];
@@ -5971,7 +5970,7 @@ numeric.cdelsq = function delsq(g) {
         Lv.push(4);
     }
     return [Li,Lj,Lv];
-}
+};
 
 numeric.cdotMV = function dotMV(A,x) {
     var ret, Ai = A[0], Aj = A[1], Av = A[2],k,p=Ai.length,N;
@@ -5981,11 +5980,11 @@ numeric.cdotMV = function dotMV(A,x) {
     ret = numeric.rep([N],0);
     for(k=0;k<p;k++) { ret[Ai[k]]+=Av[k]*x[Aj[k]]; }
     return ret;
-}
+};
 
 // 7. Splines
 
-numeric.Spline = function Spline(x,yl,yr,kl,kr) { this.x = x; this.yl = yl; this.yr = yr; this.kl = kl; this.kr = kr; }
+numeric.Spline = function Spline(x,yl,yr,kl,kr) { this.x = x; this.yl = yl; this.yr = yr; this.kl = kl; this.kr = kr; };
 numeric.Spline.prototype._at = function _at(x1,p) {
     var x = this.x;
     var yl = this.yl;
@@ -5999,7 +5998,7 @@ numeric.Spline.prototype._at = function _at(x1,p) {
     t = (x1-x[p])/(x[p+1]-x[p]);
     var s = t*(1-t);
     return add(add(add(mul(1-t,yl[p]),mul(t,yr[p+1])),mul(a,s*(1-t))),mul(b,s*t));
-}
+};
 numeric.Spline.prototype.at = function at(x0) {
     if(typeof x0 === "number") {
         var x = this.x;
@@ -6017,7 +6016,7 @@ numeric.Spline.prototype.at = function at(x0) {
     var n = x0.length, i, ret = Array(n);
     for(i=n-1;i!==-1;--i) ret[i] = this.at(x0[i]);
     return ret;
-}
+};
 numeric.Spline.prototype.diff = function diff() {
     var x = this.x;
     var yl = this.yl;
@@ -6035,7 +6034,7 @@ numeric.Spline.prototype.diff = function diff() {
         pr[i+1] = div(add(mul(dy,-6),mul(kl[i], 2*dx),mul(kr[i+1], 4*dx)),dx*dx);
     }
     return new numeric.Spline(x,zl,zr,pl,pr);
-}
+};
 numeric.Spline.prototype.roots = function roots() {
     function sqr(x) { return x*x; }
     function heval(y0,y1,k0,k1,x) {
@@ -6128,7 +6127,7 @@ numeric.Spline.prototype.roots = function roots() {
     }
     if(typeof this.yl[0] === "number") return ret[0];
     return ret;
-}
+};
 numeric.spline = function spline(x,y,k1,kn) {
     var n = x.length, b = [], dx = [], dy = [];
     var i;
@@ -6198,7 +6197,7 @@ numeric.spline = function spline(x,y,k1,kn) {
     if(typeof y[0] === "number") k = k[0];
     else k = numeric.transpose(k);
     return new numeric.Spline(x,y,y,k,k);
-}
+};
 
 // 8. FFT
 numeric.fftpow2 = function fftpow2(x,y) {
@@ -6228,7 +6227,7 @@ numeric.fftpow2 = function fftpow2(x,y) {
         x[i] = xe[j] + ci*xo[j] - si*yo[j];
         y[i] = ye[j] + ci*yo[j] + si*xo[j];
     }
-}
+};
 numeric._ifftpow2 = function _ifftpow2(x,y) {
     var n = x.length;
     if(n === 1) return;
@@ -6256,12 +6255,12 @@ numeric._ifftpow2 = function _ifftpow2(x,y) {
         x[i] = xe[j] + ci*xo[j] - si*yo[j];
         y[i] = ye[j] + ci*yo[j] + si*xo[j];
     }
-}
+};
 numeric.ifftpow2 = function ifftpow2(x,y) {
     numeric._ifftpow2(x,y);
     numeric.diveq(x,x.length);
     numeric.diveq(y,y.length);
-}
+};
 numeric.convpow2 = function convpow2(ax,ay,bx,by) {
     numeric.fftpow2(ax,ay);
     numeric.fftpow2(bx,by);
@@ -6272,7 +6271,7 @@ numeric.convpow2 = function convpow2(ax,ay,bx,by) {
         ay[i] = axi*byi+ayi*bxi;
     }
     numeric.ifftpow2(ax,ay);
-}
+};
 numeric.T.prototype.fft = function fft() {
     var x = this.x, y = this.y;
     var n = x.length, log = Math.log, log2 = log(2),
@@ -6297,7 +6296,7 @@ numeric.T.prototype.fft = function fft() {
     X.x.length = n;
     X.y.length = n;
     return X;
-}
+};
 numeric.T.prototype.ifft = function ifft() {
     var x = this.x, y = this.y;
     var n = x.length, log = Math.log, log2 = log(2),
@@ -6322,7 +6321,7 @@ numeric.T.prototype.ifft = function ifft() {
     X.x.length = n;
     X.y.length = n;
     return X.div(n);
-}
+};
 
 //9. Unconstrained optimization
 numeric.gradient = function gradient(f,x) {
@@ -6357,7 +6356,7 @@ numeric.gradient = function gradient(f,x) {
             }
     }
     return J;
-}
+};
 
 numeric.uncmin = function uncmin(f,x0,tol,gradient,maxit,callback,options) {
     var grad = numeric.gradient;
@@ -6417,7 +6416,7 @@ numeric.uncmin = function uncmin(f,x0,tol,gradient,maxit,callback,options) {
         ++it;
     }
     return {solution: x0, f: f0, gradient: g0, invHessian: H1, iterations:it, message: msg};
-}
+};
 
 // 10. Ode solver (Dormand-Prince)
 numeric.Dopri = function Dopri(x,y,f,ymid,iterations,msg,events) {
@@ -6428,7 +6427,7 @@ numeric.Dopri = function Dopri(x,y,f,ymid,iterations,msg,events) {
     this.iterations = iterations;
     this.events = events;
     this.message = msg;
-}
+};
 numeric.Dopri.prototype._at = function _at(xi,j) {
     function sqr(x) { return x*x; }
     var sol = this;
@@ -6460,7 +6459,7 @@ numeric.Dopri.prototype._at = function _at(xi,j) {
                            mul(y1,w[2])),
                            mul( p,w[3])),
                            mul( q,w[4]));
-}
+};
 numeric.Dopri.prototype.at = function at(x) {
     var i,j,k,floor = Math.floor;
     if(typeof x !== "number") {
@@ -6478,7 +6477,7 @@ numeric.Dopri.prototype.at = function at(x) {
         else j = k;
     }
     return this._at(x,i);
-}
+};
 
 numeric.dopri = function dopri(x0,x1,y0,f,tol,maxit,event) {
     if(typeof tol === "undefined") { tol = 1e-6; }
@@ -6594,7 +6593,7 @@ numeric.dopri = function dopri(x0,x1,y0,f,tol,maxit,event) {
     }
     ret.iterations = it;
     return ret;
-}
+};
 
 // 11. Ax = b
 numeric.LU = function(A, fast) {
@@ -6647,7 +6646,7 @@ numeric.LU = function(A, fast) {
     LU: A,
     P:  P
   };
-}
+};
 
 numeric.LUsolve = function LUsolve(LUP, b) {
   var i, j;
@@ -6682,9 +6681,9 @@ numeric.LUsolve = function LUsolve(LUP, b) {
   }
 
   return x;
-}
+};
 
-numeric.solve = function solve(A,b,fast) { return numeric.LUsolve(numeric.LU(A,fast), b); }
+numeric.solve = function solve(A,b,fast) { return numeric.LUsolve(numeric.LU(A,fast), b); };
 
 // 12. Linear programming
 numeric.echelonize = function echelonize(A) {
@@ -6711,7 +6710,7 @@ numeric.echelonize = function echelonize(A) {
         }
     }
     return {I:I, A:A, P:P};
-}
+};
 
 numeric.__solveLP = function __solveLP(c,A,b,tol,maxit,x,flag) {
     var sum = numeric.sum, log = numeric.log, mul = numeric.mul, sub = numeric.sub, dot = numeric.dot, div = numeric.div, add = numeric.add;
@@ -6757,7 +6756,7 @@ numeric.__solveLP = function __solveLP(c,A,b,tol,maxit,x,flag) {
         if(unbounded) return { solution: y, message: "Unbounded", iterations: count };
     }
     return { solution: x, message: "maximum iteration count exceeded", iterations:count };
-}
+};
 
 numeric._solveLP = function _solveLP(c,A,b,tol,maxit) {
     var m = c.length, n = b.length,y;
@@ -6806,7 +6805,7 @@ numeric.solveLP = function solveLP(c,A,b,Aeq,beq,tol,maxit) {
     for(i=P.length-1;i!==-1;--i) x[P[i]] = x1[i];
     for(i=Q.length-1;i!==-1;--i) x[Q[i]] = x2[i];
     return { solution: x, message:S.message, iterations: S.iterations };
-}
+};
 
 numeric.MPStoLP = function MPStoLP(MPS) {
     if(MPS instanceof String) { MPS.split('\n'); }
@@ -6858,7 +6857,7 @@ numeric.MPStoLP = function MPStoLP(MPS) {
         }
     }
     err('Reached end of file without ENDATA');
-}
+};
 // seedrandom.js version 2.0.
 // Author: David Bau 4/2/2011
 //
@@ -7747,7 +7746,7 @@ numeric.svd= function svd(A) {
 	
 	var n= u[0].length;
 	
-	if (m < n) throw "Need more rows than columns"
+	if (m < n) throw "Need more rows than columns";
 	
 	var e = new Array(n);
 	var q = new Array(n);
@@ -7757,12 +7756,12 @@ numeric.svd= function svd(A) {
 	
  	function pythag(a,b)
  	{
-		a = Math.abs(a)
-		b = Math.abs(b)
+		a = Math.abs(a);
+		b = Math.abs(b);
 		if (a > b)
-			return a*Math.sqrt(1.0+(b*b/a/a))
+			return a*Math.sqrt(1.0+(b*b/a/a));
 		else if (b == 0.0) 
-			return a
+			return a;
 		return b*Math.sqrt(1.0+(a*a/b/b))
 	}
 
@@ -7790,42 +7789,42 @@ numeric.svd= function svd(A) {
 			f= u[i][i];
 			g= Math.sqrt(s);
 			if (f >= 0.0) g= -g;
-			h= f*g-s
+			h= f*g-s;
 			u[i][i]=f-g;
 			for (j=l; j < n; j++)
 			{
-				s= 0.0
+				s= 0.0;
 				for (k=i; k < m; k++) 
 					s += u[k][i]*u[k][j]
-				f= s/h
+				f= s/h;
 				for (k=i; k < m; k++) 
 					u[k][j]+=f*u[k][i]
 			}
 		}
-		q[i]= g
-		s= 0.0
+		q[i]= g;
+		s= 0.0;
 		for (j=l; j < n; j++) 
 			s= s + u[i][j]*u[i][j]
 		if (s <= tolerance)
-			g= 0.0
+			g= 0.0;
 		else
 		{	
-			f= u[i][i+1]
-			g= Math.sqrt(s)
-			if (f >= 0.0) g= -g
-			h= f*g - s
+			f= u[i][i+1];
+			g= Math.sqrt(s);
+			if (f >= 0.0) g= -g;
+			h= f*g - s;
 			u[i][i+1] = f-g;
 			for (j=l; j < n; j++) e[j]= u[i][j]/h
 			for (j=l; j < m; j++)
 			{	
-				s=0.0
+				s=0.0;
 				for (k=l; k < n; k++) 
 					s += (u[j][k]*u[i][k])
 				for (k=l; k < n; k++) 
 					u[j][k]+=s*e[k]
 			}	
 		}
-		y= Math.abs(q[i])+Math.abs(e[i])
+		y= Math.abs(q[i])+Math.abs(e[i]);
 		if (y>x) 
 			x=y
 	}
@@ -7835,12 +7834,12 @@ numeric.svd= function svd(A) {
 	{	
 		if (g != 0.0)
 		{
-		 	h= g*u[i][i+1]
+		 	h= g*u[i][i+1];
 			for (j=l; j < n; j++) 
 				v[j][i]=u[i][j]/h
 			for (j=l; j < n; j++)
 			{	
-				s=0.0
+				s=0.0;
 				for (k=l; k < n; k++) 
 					s += u[i][k]*v[k][j]
 				for (k=l; k < n; k++) 
@@ -7853,25 +7852,25 @@ numeric.svd= function svd(A) {
 			v[j][i] = 0;
 		}
 		v[i][i] = 1;
-		g= e[i]
+		g= e[i];
 		l= i
 	}
 	
 	// accumulation of left hand transformations
 	for (i=n-1; i != -1; i+= -1)
 	{	
-		l= i+1
-		g= q[i]
+		l= i+1;
+		g= q[i];
 		for (j=l; j < n; j++) 
 			u[i][j] = 0;
 		if (g != 0.0)
 		{
-			h= u[i][i]*g
+			h= u[i][i]*g;
 			for (j=l; j < n; j++)
 			{
-				s=0.0
+				s=0.0;
 				for (k=l; k < m; k++) s += u[k][i]*u[k][j];
-				f= s/h
+				f= s/h;
 				for (k=i; k < m; k++) u[k][j]+=f*u[k][i];
 			}
 			for (j=i; j < m; j++) u[j][i] = u[j][i]/g;
@@ -7882,16 +7881,16 @@ numeric.svd= function svd(A) {
 	}
 	
 	// diagonalization of the bidiagonal form
-	prec= prec*x
+	prec= prec*x;
 	for (k=n-1; k != -1; k+= -1)
 	{
 		for (var iteration=0; iteration < itmax; iteration++)
 		{	// test f splitting
-			var test_convergence = false
+			var test_convergence = false;
 			for (l=k; l != -1; l+= -1)
 			{	
 				if (Math.abs(e[l]) <= prec)
-				{	test_convergence= true
+				{	test_convergence= true;
 					break 
 				}
 				if (Math.abs(q[l-1]) <= prec)
@@ -7899,94 +7898,94 @@ numeric.svd= function svd(A) {
 			}
 			if (!test_convergence)
 			{	// cancellation of e[l] if l>0
-				c= 0.0
-				s= 1.0
-				var l1= l-1
+				c= 0.0;
+				s= 1.0;
+				var l1= l-1;
 				for (i =l; i<k+1; i++)
 				{	
-					f= s*e[i]
-					e[i]= c*e[i]
+					f= s*e[i];
+					e[i]= c*e[i];
 					if (Math.abs(f) <= prec)
-						break
-					g= q[i]
-					h= pythag(f,g)
-					q[i]= h
-					c= g/h
-					s= -f/h
+						break;
+					g= q[i];
+					h= pythag(f,g);
+					q[i]= h;
+					c= g/h;
+					s= -f/h;
 					for (j=0; j < m; j++)
 					{	
-						y= u[j][l1]
-						z= u[j][i]
-						u[j][l1] =  y*c+(z*s)
+						y= u[j][l1];
+						z= u[j][i];
+						u[j][l1] =  y*c+(z*s);
 						u[j][i] = -y*s+(z*c)
 					} 
 				}	
 			}
 			// test f convergence
-			z= q[k]
+			z= q[k];
 			if (l== k)
 			{	//convergence
 				if (z<0.0)
 				{	//q[k] is made non-negative
-					q[k]= -z
+					q[k]= -z;
 					for (j=0; j < n; j++)
 						v[j][k] = -v[j][k]
 				}
-				break  //break out of iteration loop and move on to next k value
+				break;  //break out of iteration loop and move on to next k value
 			}
 			if (iteration >= itmax-1)
-				throw 'Error: no convergence.'
+				throw 'Error: no convergence.';
 			// shift from bottom 2x2 minor
-			x= q[l]
-			y= q[k-1]
-			g= e[k-1]
-			h= e[k]
-			f= ((y-z)*(y+z)+(g-h)*(g+h))/(2.0*h*y)
-			g= pythag(f,1.0)
+			x= q[l];
+			y= q[k-1];
+			g= e[k-1];
+			h= e[k];
+			f= ((y-z)*(y+z)+(g-h)*(g+h))/(2.0*h*y);
+			g= pythag(f,1.0);
 			if (f < 0.0)
-				f= ((x-z)*(x+z)+h*(y/(f-g)-h))/x
+				f= ((x-z)*(x+z)+h*(y/(f-g)-h))/x;
 			else
-				f= ((x-z)*(x+z)+h*(y/(f+g)-h))/x
+				f= ((x-z)*(x+z)+h*(y/(f+g)-h))/x;
 			// next QR transformation
-			c= 1.0
-			s= 1.0
+			c= 1.0;
+			s= 1.0;
 			for (i=l+1; i< k+1; i++)
 			{	
-				g= e[i]
-				y= q[i]
-				h= s*g
-				g= c*g
-				z= pythag(f,h)
-				e[i-1]= z
-				c= f/z
-				s= h/z
-				f= x*c+g*s
-				g= -x*s+g*c
-				h= y*s
-				y= y*c
+				g= e[i];
+				y= q[i];
+				h= s*g;
+				g= c*g;
+				z= pythag(f,h);
+				e[i-1]= z;
+				c= f/z;
+				s= h/z;
+				f= x*c+g*s;
+				g= -x*s+g*c;
+				h= y*s;
+				y= y*c;
 				for (j=0; j < n; j++)
 				{	
-					x= v[j][i-1]
-					z= v[j][i]
-					v[j][i-1] = x*c+z*s
+					x= v[j][i-1];
+					z= v[j][i];
+					v[j][i-1] = x*c+z*s;
 					v[j][i] = -x*s+z*c
 				}
-				z= pythag(f,h)
-				q[i-1]= z
-				c= f/z
-				s= h/z
-				f= c*g+s*y
-				x= -s*g+c*y
+				z= pythag(f,h);
+				q[i-1]= z;
+				c= f/z;
+				s= h/z;
+				f= c*g+s*y;
+				x= -s*g+c*y;
 				for (j=0; j < m; j++)
 				{
-					y= u[j][i-1]
-					z= u[j][i]
-					u[j][i-1] = y*c+z*s
+					y= u[j][i-1];
+					z= u[j][i];
+					u[j][i-1] = y*c+z*s;
 					u[j][i] = -y*s+z*c
 				}
 			}
-			e[l]= 0.0
-			e[k]= f
+			e[l]= 0.0;
+			e[k]= f;
 			q[k]= x
 		} 
 	}
@@ -7994,7 +7993,7 @@ numeric.svd= function svd(A) {
 	//vt= transpose(v)
 	//return (u,q,vt)
 	for (i=0;i<q.length; i++) 
-	  if (q[i] < prec) q[i] = 0
+	  if (q[i] < prec) q[i] = 0;
 	  
 	//sort eigenvalues	
 	for (i=0; i< n; i++)
@@ -8005,9 +8004,9 @@ numeric.svd= function svd(A) {
 	  if (q[j] < q[i])
 	  {
 	//  writeln(i,'-',j)
-	   c = q[j]
-	   q[j] = q[i]
-	   q[i] = c
+	   c = q[j];
+	   q[j] = q[i];
+	   q[i] = c;
 	   for(k=0;k<u.length;k++) { temp = u[k][i]; u[k][i] = u[k][j]; u[k][j] = temp; }
 	   for(k=0;k<v.length;k++) { temp = v[k][i]; v[k][i] = v[k][j]; v[k][j] = temp; }
 //	   u.swapCols(i,j)
@@ -8102,7 +8101,7 @@ function mosseFilter(params) {
         canvas.setAttribute('width', _w);
         canvas.setAttribute('height', _h);
         _cc = canvas.getContext('2d');
-    }
+    };
     
     this.init = function(w,h) {
         // initialize filter width and height for a blank filter
@@ -8137,7 +8136,7 @@ function mosseFilter(params) {
         canvas.setAttribute('width', _w);
         canvas.setAttribute('height', _h);
         _cc = canvas.getContext('2d');
-    }
+    };
     
     // fft function
     this.fft = function(array) {
@@ -8148,9 +8147,9 @@ function mosseFilter(params) {
           cn[i] = 0.0;
         }
         
-        _fft.fft2d(array,cn)
+        _fft.fft2d(array,cn);
         return [array, cn];
-    }
+    };
     
     // fft function
     this.fft_inplace = function(array) {
@@ -8160,15 +8159,15 @@ function mosseFilter(params) {
           _im_part[i] = 0.0;
         }
         
-        _fft.fft2d(array,_im_part)
+        _fft.fft2d(array,_im_part);
         return [array, _im_part];
-    }
+    };
     
     this.ifft = function(rn, cn) {
         // in-place
         _fft.ifft2d(rn, cn);
         return rn;
-    }
+    };
 
     // peak to sidelobe ratio function (optional)
     this.psr = function(array) {
@@ -8194,7 +8193,7 @@ function mosseFilter(params) {
         for (var x = -5;x < 6;x++) {
             for (var y = -5;y < 6;y++) {
                 if (Math.sqrt(x*x+y*y) < 5) {
-                    val = array[((maxpos[1]+y)*_w)+(maxpos[0]+x)]
+                    val = array[((maxpos[1]+y)*_w)+(maxpos[0]+x)];
                     sdo -= (val*val);
                     sum -= val;
                 }
@@ -8207,7 +8206,7 @@ function mosseFilter(params) {
         // get mean/variance of output around peak
         var psr = (max-mean)/sd;
         return psr;
-    }
+    };
     
     this.getResponse = function(imageData) {
         // in-place
@@ -8225,7 +8224,7 @@ function mosseFilter(params) {
         // do inverse 2d fft
         var filtered = this.ifft(res[0],res[1]);
         return filtered;
-    }
+    };
     
     this.track = function(input, left, top, width, height, updateFilter, gaussianPrior, calcPSR) {
         // finds position of filter in input image
@@ -8287,7 +8286,7 @@ function mosseFilter(params) {
                 for (var y = 0;y < _h;y++) {
                     dx = x - _w/2;
                     dy = y - _h/2;
-                    prior = Math.exp(-0.5*((dx*dx)+(dy*dy))/variance)
+                    prior = Math.exp(-0.5*((dx*dx)+(dy*dy))/variance);
                     if ((filtered[(y*_w)+x]*prior) > max) {
                         max = filtered[(y*_w)+x]*prior;
                         maxpos = [x,y];
@@ -8396,7 +8395,7 @@ function mosseFilter(params) {
         } else {
           return maxpos;
         }
-    }
+    };
     
     this.train = function(input, left, top, width, height) {
         
@@ -8462,7 +8461,7 @@ function mosseFilter(params) {
         _filter = complex_div(_top,_bottom);
         
         return true;
-    }
+    };
     
     var preprocess = function(array) {
         // in-place
@@ -8492,7 +8491,7 @@ function mosseFilter(params) {
         }
         
         return array;
-    }
+    };
     
     var cosine_window = function(array) {
         // calculate rect cosine window (in-place)
@@ -8500,15 +8499,15 @@ function mosseFilter(params) {
         for (var i = 0;i < _w;i++) {
             for (var j = 0;j < _h;j++) {
                 //pos = (i%_w)+(j*_w);
-                var cww = Math.sin((Math.PI*i)/(_w-1))
-                var cwh = Math.sin((Math.PI*j)/(_h-1))
+                var cww = Math.sin((Math.PI*i)/(_w-1));
+                var cwh = Math.sin((Math.PI*j)/(_h-1));
                 array[pos] = Math.min(cww,cwh)*array[pos];
                 pos++;
             }
         }
         
         return array;
-    }
+    };
     
     var complex_mult = function(cn1, cn2) {
         // not in-place
@@ -8520,7 +8519,7 @@ function mosseFilter(params) {
             nucn[1][r] = (cn1[0][r]*cn2[1][r]) + (cn1[1][r]*cn2[0][r]);
         }
         return nucn;
-    }
+    };
     
     var complex_mult_inplace = function(cn1, cn2) {
         // in-place
@@ -8531,17 +8530,17 @@ function mosseFilter(params) {
             cn1[0][r] = temp1;
             cn1[1][r] = temp2;
         }
-    }
+    };
     
     var complex_conj = function(cn) {
         // not in-place (TODO)
         var nucn = [[],[]];
         for (var i = 0;i < _arrlen;i++) {
-            nucn[0][i] = cn[0][i]
+            nucn[0][i] = cn[0][i];
             nucn[1][i] = -cn[1][i];
         }
         return nucn;
-    }
+    };
     
     var complex_div = function(cn1, cn2) {
         // not in-place (TODO)
@@ -8578,12 +8577,12 @@ function FFT() {
     } else {
       throw new Error("init: radix-2 required");
     }
-  }
+  };
     
   // 1D-FFT
   this.fft1d = function (re, im) {
     fft(re, im, 1);
-  }
+  };
     
   // 1D-IFFT
   this.ifft1d = function (re, im) {
@@ -8593,7 +8592,7 @@ function FFT() {
       re[i] *= n;
       im[i] *= n;
     }
-  }
+  };
   
   // 2D-FFT
   this.fft2d = function (re, im) {
@@ -8625,7 +8624,7 @@ function FFT() {
         im[i] = _tim[y2];
       }
     }
-  }
+  };
   
   // 2D-IFFT
   this.ifft2d = function (re, im) {
@@ -8657,7 +8656,7 @@ function FFT() {
         im[i] = _tim[y2];
       }
     }
-  }
+  };
   
   // core operation of FFT
   function fft(re, im, inv) {
