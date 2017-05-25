@@ -16,11 +16,11 @@
 <form th:action="@{/login}" method="post" onsubmit="return iniciar();">
     <h1>Poli Anti-Fraude</h1>
             <div class="contenedor-inputs"> 
-                <input type="text" id="usuario" name="usuario" placeholder="Ingrese su Usuario" />
-                <input type="password" id="clave" name="clave" placeholder="Ingrese su Contraseña" />
-                <button type="button" value="registrar"><a href="registrar.html">Registrarse</button></a>
-                <button type="submit" value="iniciar">Iniciar Sesión</button>    
-                <p class="form_link">¿Olvidaste tu Contraseña? <a href="recuperar.html"><br>Ingresa Aquí</a></p>
+                <input type="text" id="usuario" name="username" placeholder="Ingrese su Usuario" />
+                <input type="password" id="clave" name="password" placeholder="Ingrese su Contraseña" />
+                <button type="button" value="registrar"><a href="registrar.html">Registrarse</a></button>
+                <button type="submit" value="Sign In">Iniciar Sesión</button>
+                <p class="form_link">¿Olvidaste tu Contraseña? <a href="recuperar.html"><br></br>Ingresa Aquí</a></p>
             </div>
 </form>
 </body>

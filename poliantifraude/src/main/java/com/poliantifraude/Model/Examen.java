@@ -27,8 +27,6 @@ public class Examen {
     private long tiempo_realizacion;
     @Column(name = "materia")
     private Materia materia;
-    @Column(name = "profesor")
-    private Profesor profesor;
 
     public Hashtable<String, Estudiante> getEstudiantes() {
         return estudiantes;
@@ -86,23 +84,16 @@ public class Examen {
         this.materia = materia;
     }
 
-    public Profesor getProfesor() {
-        return profesor;
-    }
-
-    protected void setProfesor(Profesor profesor) {
-        this.profesor = profesor;
-    }
 
 
     // se genera Constructor para la clase Examen
-    public Examen(Hashtable<String, Estudiante> estudiantes, Fraude fraude, Date fecha_Asignacion, Date fecha_Presentacion, long tiempo_realizacion, Materia materia, Profesor profesor) {
+    public Examen(Hashtable<String, Estudiante> estudiantes, Fraude fraude, Date fecha_Asignacion, Date fecha_Presentacion, long tiempo_realizacion, Materia materia) {
         this.estudiantes = estudiantes;
         this.fraude = fraude;
         this.fecha_Asignacion = fecha_Asignacion;
         this.fecha_Presentacion = fecha_Presentacion;
         this.tiempo_realizacion = tiempo_realizacion;
         this.materia = materia;
-        this.profesor = profesor;
+
     }
 }
