@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Recuperar Contraseña</title>
+    <link rel="stylesheet" href="/css/estilos.css"/>
+    <script src="/js/registrar.js"></script>
+</head>
+<body>
+<form th:action="@{/login}" method="post" onsubmit="return enviar();">
+    <h1>Recuperar Contraseña</h1>
+        <input type="text" id="usuario" name="usuario" placeholder="Ingrese su Usuario"/>
+        <input type="email" id="email" name="email"placeholder="Ingrese su Correo"/>
+        <button type="button"><a href="login.html">Cancelar</button>
+        <button type="submit" value="enviar">Enviar</button>
+</form>
+</body>
+</html>
