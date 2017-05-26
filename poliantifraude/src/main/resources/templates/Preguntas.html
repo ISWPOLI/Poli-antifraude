@@ -14,7 +14,7 @@
     <p>Estas preguntas son tomadas de la informacion que registro del estudiante o si actualizo datos.</p>
     <form>
         <div class="form-group">
-            <label for="preg1"><p th:text="'Usuario: ' + ${user.usuario}" /></label>
+            <label for="preg1">Pregunta 1:</label>
             <input type="text" class="form-control" id="preg1"></input>
         </div>
         <div class="form-group">
@@ -26,7 +26,7 @@
             <input type="text" class="form-control" id="preg3"></input>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-default" data-dismiss="modal">Seguir</button>
+            <button type="submit" class="btn btn-default" th:href="@{/camera}" data-dismiss="modal">Seguir</button>
         </div>
     </form>
 </div>
