@@ -3,9 +3,11 @@ Repositorio para el proyecto
 
 Se realiza modifica sobre las URL generando acceso sobre los componentes y funciones a traves de los siguintes links:
 
-https://186.155.26.16/login?logout
-https://186.155.26.16/camera
-https://186.155.26.16/camera2
+ https://186.155.26.16/login
+
+ https://186.155.26.16/camera
+
+ https://186.155.26.16/camera2
 
 Cambios que se pueden contemplar en los siguientes links:
 
