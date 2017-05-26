@@ -35,6 +35,8 @@ public class PreguntaController {
         System.out.println(auth.getName());
         user =  userService.findByNombreDeUsuario(auth.getName());
 
-        return "preguntas";
+        
+
+        return "Preguntas";
     }
 }
